@@ -269,24 +269,10 @@ body {
   background: #fff;
   border-bottom: 2px solid #f9fafe;
   margin: 72px 0 -72px 0;
+  display: flex;
 }
 
-.search-form {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Add space between elements */
-  }
-  
-  .search-form input[type="text"],
-  .search-form select,
-  .search-form input[type="submit"] {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  
-  .search-form label {
-    margin-left: 10px;
-  }
+
 /*end of search*/
 
 
@@ -334,6 +320,24 @@ body {
     bottom: 0;
     left: calc(50% - 30px);
   }
+
+/*Card Wrapper*/
+
+.cards-wrapper{
+  display: inline-flex;
+}
+.card{
+  margin: 0.7em;
+  
+}
+
+.carousel-control-prev {
+  left: -60px; /* Move the 'Prev' icon further to the left */
+}
+
+.carousel-control-next {
+  right: -110px; /* Move the 'Next' icon further to the right */
+}
 
 #footer {
     background: #f9fafe;
