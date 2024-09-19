@@ -1,6 +1,7 @@
 <html>
     <head>
-        
+         <!--Bootstrap Link-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
        <title>
         Admin DashBoard
        </title> 
@@ -20,9 +21,10 @@
   <a href="view-student.php">View Student Application</a>
 </div>
 
-<div>
-   <table border ="1">
-    <tr>
+<div class="container">
+<table border ="1" class= "table table-striped">
+<tr>
+       <th>#</th>
        <th>Student Name</th> 
         <th>Student Number</th>
         <th>Programme</th>
@@ -33,6 +35,7 @@
 
     <!--Below Information will be fetch from db later-->
     <tr>
+        <th>1</th>
         <th>John</th>
         <th>123456789</th>
         <th>BCTCUN</th>
@@ -44,12 +47,5 @@
 </div>
     </body>
 <!-------------------------------------End of Body--------------------------------------->
-
-<footer>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus pariatur ipsa modi eligendi
-     impedit cum rem placeat obcaecati! 
-     In eos exercitationem quod fugiat aperiam culpa unde tempore debitis, atque pariatur!<br>
-  <a href="mailto:hege@example.com">example@example.com</a></p>
-</footer>
 
 </html>

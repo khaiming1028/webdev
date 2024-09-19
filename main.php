@@ -81,34 +81,8 @@
 
 
 <!--Jobs option section-->
-<section id="intro" class="d-flex align-items-center">
-    <div class="container">
-      <div class="row gy-4">
-         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-             <div>
-                <h2>Search for Jobs</h2>
-               <div class="container">
-                <form class="search-form">
-                <input type="text" value="Search....">
-                <input type="text" value="location">
-                <label for="job-category">Category</label>
-                <select name="status" id="status" placeholder="Job Categories">
-                <option value="success">Engineering</option>
-                <option value="pending">Medical</option>
-                <option value="decline">Information Technology</option>
-            </select>
-            <input type="submit" class="btn btn-info">
-            </form>
-               </div>
-             </div>
-         </div>
-      </div>
-    </div>
-    </section>
-   
 
-    <!--partner section-->
-    <section id="search" class="d-flex align-items-center">
+<section id="intro" class="d-flex align-items-center">
   <div class="container">
     <div class="row gy-4">
     <h2>Available Jobs</h2>
@@ -254,6 +228,21 @@
   </div>
 </section>
 
+
+    <!--partner section-->
+    <section id="search" class="d-flex align-items-center">
+    <div class="container">
+      <div class="row gy-4">
+         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+             <div>
+                <h2>Our Partner</h2>
+               
+             </div>
+         </div>
+      </div>
+    </div>
+    </section>
+   
    
    
     </body>
