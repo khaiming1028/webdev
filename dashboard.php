@@ -17,7 +17,7 @@
 <ul class ="nav-links">
   <li><a href="dashboard.php"><i class="fa-solid fa-house" style="color: #ffffff;"></i><p>Dashboard</p></a></li>
   <li><a href="job-upload.php"><i class="fa-solid fa-upload" style="color: #ffffff;"></i><p>Post a Job</p></a></li>
-  <li><a href="job-details.php"><i class="fa-solid fa-display" style="color: #ffffff;"></i><p>View Job</p></a></li>
+  <li><a href="view-job.php"><i class="fa-solid fa-display" style="color: #ffffff;"></i><p>View Job</p></a></li>
   <li><a href="view-student.php"><i class="fa-solid fa-user" style="color: #ffffff;"></i><p>View Student Application</p></a></li>
   <div class="active-dashboard"></div>
 </ul>
