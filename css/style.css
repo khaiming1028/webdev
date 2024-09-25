@@ -38,7 +38,7 @@ body {
   margin-top: 72px;
 }
 
-
+/* Main Page Nav*/
 .navbar {
     padding: 0;
   }
@@ -159,6 +159,71 @@ body {
       left: -100%;
     }
   }
+
+/*Dashboard Nav*/
+.dashboard-header{
+  width: 100%;
+  height: 100vh;
+  background:#f9fafe ;
+}
+
+.side-nav{
+  width: 250px;
+  height: 100%;
+  background: #f13232;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px 30px;
+}
+.logo{
+  display: block;
+  margin-bottom: 130px;
+}
+.logo-img{
+  width: 200px;
+}
+.nav-links{
+  list-style: none;
+  position: relative;
+}
+.nav-links li{
+  padding: 10px 0;
+}
+.nav-links li a{
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+}
+.nav-links li a i{
+ font-size: 22px;
+ margin-right: 20px;
+}
+.active-dashboard
+{
+  background: #fff;
+  width: 100%;
+  height: 47px;
+  position: absolute;
+  left: 0;
+  top: 2.6%;
+  z-index: -1;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(255, 255, 255, 0.4);
+  display: none;
+}
+.nav-links li:hover a{
+  color: #f13232;
+  transition: 0.3s;
+}
+.nav-links li:hover ~ .active{
+  display: block;
+}
+.nav-links li:nth-child(1):hover ~ .active{
+top: 2.6%;
+}
 /* start of Intro */
   #intro {
     width: 100%;

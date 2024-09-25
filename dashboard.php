@@ -1,60 +1,35 @@
 <html>
     <head>
-        
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://kit.fontawesome.com/0d113d0983.js" crossorigin="anonymous"></script>
        <title>
-        Admin DashBoard
+        Admin Dashboard
        </title> 
 
-</div>
-       <h1>
-         Admin Dashboard
-       </h1>
-       
     </head>
 <!-------------------------------------Start of Body--------------------------------------->
     <body>
-<div id="mySidenav" class="sidenav">
- <a href="dashboard.php">Home</a>
-  <a href="job-upload.php">Post a job</a>
-  <a href="view-job.php">View Posted Job</a>
-  <a href="view-student.php">View Student Application</a>
+ <div class="dashboard-header">
+ <div class ="side-nav">
+  <a href="#" class ="logo">
+    <img src="img/inti4.png" class = "logo-img">
+</a>
+<ul class ="nav-links">
+  <li><a href="dashboard.php"><i class="fa-solid fa-house" style="color: #ffffff;"></i><p>Dashboard</p></a></li>
+  <li><a href="job-upload.php"><i class="fa-solid fa-upload" style="color: #ffffff;"></i><p>Post a Job</p></a></li>
+  <li><a href="job-details.php"><i class="fa-solid fa-display" style="color: #ffffff;"></i><p>View Job</p></a></li>
+  <li><a href="view-student.php"><i class="fa-solid fa-user" style="color: #ffffff;"></i><p>View Student Application</p></a></li>
+  <div class="active-dashboard"></div>
+</ul>
+</div>
 </div>
 
 <!--Below chart will be displayed using chart.js and data will be fetch from db-->
-<div>
-    <div>
-        <p>Chart Indicating the number of jobs posted</p>
-    </div>
-</div>
+    
 
-<div>
-    <div>
-        <p>Chart Indicating the number of student that apply for jobs</p>
-    </div>
-</div>
-<div>
-    <div>
-        <p>Chart Indicating the number of student that are hired</p>
-    </div>
-</div>
-<div>
-    <div>
-        <p>Chart Indicating the number of student that are pending</p>
-    </div>
-</div>
-<div>
-    <div>
-        <p>Chart Indicating the number of student that are declined</p>
-    </div>
-</div>
     </body>
 <!-------------------------------------End of Body--------------------------------------->
 
-<footer>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus pariatur ipsa modi eligendi
-     impedit cum rem placeat obcaecati! 
-     In eos exercitationem quod fugiat aperiam culpa unde tempore debitis, atque pariatur!<br>
-  <a href="mailto:hege@example.com">example@example.com</a></p>
-</footer>
+
 
 </html>
