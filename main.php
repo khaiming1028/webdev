@@ -29,7 +29,7 @@
       <li><a class="nav-link scrollto" href="profile.php">Profile</a></li>
       <li><a class="nav-link scrollto" href="signup.php">Sign up</a></li>
       <li><a class="nav-link scrollto" href="#login">Log in</a></li>
-        </ul>
+        </ul> 
 </nav>
 </header>
     <!--introduction section-->
@@ -52,7 +52,7 @@
   </section><!-- End intro -->
    
     <!--search and filter section-->
-    <section id="search" class="d-flex align-items-center">
+  <section id="search" class="d-flex align-items-center">
     <div class="container">
       <div class="row gy-4">
          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
@@ -75,7 +75,7 @@
          </div>
       </div>
     </div>
-    </section>
+  </section>
    
 
 
@@ -230,18 +230,30 @@
 
 
     <!--partner section-->
-    <section id="search" class="d-flex align-items-center">
-    <div class="container">
-      <div class="row gy-4">
-         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-             <div>
-                <h2>Our Partner</h2>
-               
-             </div>
-         </div>
+    <section id="search" class="clients section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Company</h2>
+          <p>They trusted us</p>
+        </div>
+
+        <div class="clients-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide">test</div>
+            <div class="swiper-slide">test 2</div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
       </div>
-    </div>
-    </section>
+    </section><!-- End Clients Section --> 
    
    
    
@@ -251,19 +263,54 @@
     
     
     <footer id="footer">
-    <div class="footer-top">
-    <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 footer-contact">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus pariatur ipsa modi eligendi
-         impedit cum rem placeat obcaecati! 
-         In eos exercitationem quod fugiat aperiam culpa unde tempore debitis, atque pariatur!<br>
-      <a href="mailto:hege@example.com">example@example.com</a></p>
+
+<div class="footer-top">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-3 col-md-6 footer-contact">
+        <h3>INTI College Penang</h3>
+        <p>
+            123-123-123 dnfksnkfsddsnk <br><br>
+          <strong>Phone:</strong>012-345-6789<br>
+          <strong>Email:</strong> info@example.com<br>
+        </p>
+      </div>
+
+      <div class="col-lg-3 col-md-6 footer-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+        </ul>
+      </div>
+
+
+      <div class="col-lg-3 col-md-6 footer-links">
+        <h4>Our Social Networks</h4>
+        <div class="social-links mt-3">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        </div>
+      </div>
+
     </div>
   </div>
- </div>
 </div>
-    </footer>
+
+<div class="container py-4">
+  <div class="copyright">
+    &copy; Copyright <strong><span>HongHuat Motors</span></strong>. All Rights Reserved
+  </div>
+
+
+
+</div>
+</footer><!-- End Footer --
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
