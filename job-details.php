@@ -34,22 +34,15 @@
 </div>
 </header>
 
-        <div class="container">
-        <table border="1">
+<div class="container">
+    <table border="1">
         <tr>
             <th>Picture</th>
             <th>Details</th>
             <th><input type="submit" value="Apply for jobs"></th>
-
         </tr>
-        
-        
-        
-
-    
     </table>
-
-        </div>   
+</div>   
     
     </body>
     </html>

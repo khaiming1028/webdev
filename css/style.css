@@ -15,11 +15,11 @@ body {
 }
 
 #header .logo h1 {
-  font-size: 30px;
-  margin: 0;
-  line-height: 1;
-  font-weight: 400;
-  letter-spacing: 2px;
+  font-size: 30px;          /* Font size */
+  margin: 50px 0 5px;      /* Top margin: 30px, Bottom margin: 5px */
+  line-height: 1;          /* Adjust line height */
+  font-weight: 400;        /* Font weight */
+  letter-spacing: 2px;     /* Letter spacing */
 }
 
 #header .logo h1 a,
@@ -159,15 +159,15 @@ body {
       left: -100%;
     }
   }
-
-/*Dashboard Nav*/
-.dashboard-header{
+/* Dashboard Nav */
+.dashboard-header {
   width: 100%;
   height: 100vh;
-  background:#f9fafe ;
+  background: #f9fafe;
+  display: flex; /* Allow child elements to align correctly */
 }
 
-.side-nav{
+.side-nav {
   width: 250px;
   height: 100%;
   background: #f13232;
@@ -175,62 +175,82 @@ body {
   top: 0;
   left: 0;
   padding: 20px 30px;
+  transition: width 0.3s ease-in-out;
+  z-index: 1000; /* Ensures the sidebar is above other elements */
 }
-.logo{
+
+.logo {
   display: block;
-  margin-bottom: 130px;
+  margin-bottom: 50px; /* Adjusted for better spacing */
 }
-.logo-img{
+
+.logo-img {
   width: 200px;
+  max-width: 100%; /* Responsive adjustment */
 }
-.nav-links{
+
+.nav-links {
   list-style: none;
-  position: relative;
+  padding: 0; /* Reset padding */
+  margin: 0; /* Reset margin */
 }
-.nav-links li{
+
+.nav-links li {
   padding: 10px 0;
 }
-.nav-links li a{
+
+.nav-links li a {
   color: #fff;
   text-decoration: none;
   padding: 10px 14px;
   display: flex;
   align-items: center;
+  transition: color 0.3s; /* Add smooth transition on color */
 }
-.nav-links li a i{
- font-size: 22px;
- margin-right: 20px;
+
+.nav-links li a i {
+  font-size: 22px;
+  margin-right: 20px;
 }
-.active-dashboard
-{
+
+.active-dashboard {
   background: #fff;
   width: 100%;
   height: 47px;
   position: absolute;
   left: 0;
-  top: 2.6%;
-  z-index: -1;
+  top: 2.6%; /* Positioning needs to be relative to the item */
+  z-index: -1; /* This should be above the items */
   border-radius: 6px;
   box-shadow: 0 5px 10px rgba(255, 255, 255, 0.4);
-  display: none;
+  display: none; /* Hide by default */
 }
-.nav-links li:hover a{
-  color: #f13232;
-  transition: 0.3s;
+
+.dashboard-charts {
+  margin-left: 250px; /* to avoid overlap with the side nav */
+  padding: 20px;
+  display: flex; /* Flexbox for layout */
+  justify-content: space-around; /* Space between charts */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
-.nav-links li:hover ~ .active{
-  display: block;
+
+.chart-container {
+  width: 80%; /* Adjust the width as needed */
+  max-width: 600px; /* Maximum width for larger screens */
+  margin: 20px; /* Space around each chart */
 }
-.nav-links li:nth-child(1):hover ~ .active{
-top: 2.6%;
+
+canvas {
+  height: 300px !important; /* Set a fixed height for the chart */
+  width: 100% !important; /* Make it responsive */
 }
+
 /* start of Intro */
   #intro {
     width: 100%;
     height: 70vh;
     background: #f9fafe;
     border-bottom: 2px solid #f2f2f5;
-    margin: 72px 0 -72px 0;
   }
   /*fef8f5*/
   #intro h1 {
@@ -327,8 +347,92 @@ top: 2.6%;
   
 
 
-/* start of search css*/
-#search{
+/* Search and Filter Section Styling */
+#search {
+  background-color: #fff; /* Light background */
+  padding: 60px 0; /* Existing padding around the section */
+  padding-top: calc(60px + 20px); /* Adjust padding for navbar height */
+}
+
+
+#search h2 {
+  
+    color: #a08f86;
+    margin: 15px 0 0 0;
+    font-size: 24px;
+  
+}
+
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Space between form elements */
+  align-items: center; /* Center vertically */
+
+}
+
+.search-form input[type="search"],
+.search-form input[type="location"],
+.search-form select {
+  flex: 1; /* Make the inputs take full width */
+  min-width: 200px; /* Set a minimum width for better usability */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd; /* Light border */
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-form input[type="search"]:focus,
+.search-form input[type="location"]:focus,
+.search-form select:focus {
+  border-color: #007bff; /* Border color on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Subtle focus effect */
+}
+
+.search-form label {
+  font-size: 14px;
+  color: #555; /* Lighter label color */
+  margin-top: 10px;
+}
+
+.search-form .btn {
+  flex: 0 0 100px; /* Fixed size for the button */
+  background-color: #007bff; /* Button background */
+  color: #fff; /* Button text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.search-form .btn:hover {
+  background-color: #0056b3; /* Darker on hover */
+}
+
+@media (max-width: 768px) {
+  .search-form {
+    flex-direction: column; /* Stack the inputs on smaller screens */
+  }
+
+  .search-form input[type="submit"] {
+    width: 100%; /* Full-width button on smaller screens */
+  }
+}
+
+/* Spacing and layout */
+#search .container {
+  max-width: 960px; /* Limit the container width */
+  margin: auto;
+}
+
+#search .col-lg-6 {
+  text-align: center; /* Center align on smaller screens */
+}
+
+
+#partner{
   width: 100%;
   height: 70vh;
   background: #fff;
@@ -337,15 +441,11 @@ top: 2.6%;
   display: flex;
 }
 
-
-/*end of search*/
-
-
-
 /* Section */
   section {
     padding: 60px 0;
     overflow: hidden;
+    width: 100%;
   }
   
   .section-bg {

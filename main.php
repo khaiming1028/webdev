@@ -33,7 +33,7 @@
 </nav>
 </header>
     <!--introduction section-->
-<section id="intro" class="d-flex align-items-center">
+<!--<section id="intro" class="d-flex align-items-center">
     <div class="container">
       <div class="row gy-4">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
@@ -48,21 +48,21 @@
         </div>
       </div>
     </div>
+  </section>
+  -->
 
-  </section><!-- End intro -->
-   
     <!--search and filter section-->
   <section id="search" class="d-flex align-items-center">
     <div class="container">
       <div class="row gy-4">
-         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-             <div>
+      <div class="col-lg-8 order-2 order-lg-1 d-flex flex-column justify-content-center">
+      <div>
                 <h2>Search for Jobs</h2>
+                <br>
                <div class="container">
                 <form class="search-form">
                 <input type="search" class="form-control" id="email" placeholder="Search" name="search">
                 <input type="location" class="form-control" id="location" placeholder="Location" name="location">
-                <label for="job-category">Category</label>
                 <select name="status" id="status" placeholder="Job Categories">
                 <option value="success">Engineering</option>
                 <option value="pending">Medical</option>
@@ -230,7 +230,7 @@
 
 
     <!--partner section-->
-    <section id="search" class="clients section-bg">
+    <section id="partner" class="clients section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -238,19 +238,7 @@
           <p>They trusted us</p>
         </div>
 
-        <div class="clients-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide">test</div>
-            <div class="swiper-slide">test 2</div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
+        
 
       </div>
     </section><!-- End Clients Section --> 
@@ -304,7 +292,7 @@
 
 <div class="container py-4">
   <div class="copyright">
-    &copy; Copyright <strong><span>HongHuat Motors</span></strong>. All Rights Reserved
+    &copy; Copyright <strong><span>INTI College Penang</span></strong>. All Rights Reserved
   </div>
 
 
