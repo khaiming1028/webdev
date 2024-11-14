@@ -1,56 +1,41 @@
-<html>
-<title>
-    Profile
-</title>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
-<div class="topnav">
-      <a class="active" href="main.php">Home</a>
-      <a href="#news">News</a>
-      <a href="forum.php">Forum</a>
-      <a href="#about">About</a>
-      <a href="profile.php">Profile</a>
-      <a href="signup.php">Sign up</a>
-      <a href="#login">Log in</a>
-    </div>
-    <h1>
-         Profile 
-    </h1>
-</div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
-<!-------------------------------------Start of Body--------------------------------------->
 <body>
-<div>
-<div>
- <form action="" method="get">
- <label for="student-name">Student Name:</label>
-   <input type="text">
-   <br>
-   <label for="mac-num">Matriculation  Number:</label>
-   <input type="text">
-   <br>
-   <label for ="programme">Programme:</label>
-   <input type="text">
-   <br>
-   <label for="gender">Gender:</label>
-    <select name="gender" id="gender">
-     <option value="male">Male</option>
-     <option value="female">Female</option>
-    </select>
-  <br>
-  <label for ="contact">Contact:</label>
-  <input type="text" name="contact">
-  <input type="submit" value="Submit">
- </form>
-</div> 
-</body>
-<!-------------------------------------End of Body--------------------------------------->
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-info">
+                <h1 class="name">Joe</h1>
+                <p class="title">Full Stack Developer</p>
+                <p class="location">New York, USA</p>
+            </div>
+        </div>
 
-<footer>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus pariatur ipsa modi eligendi
-     impedit cum rem placeat obcaecati! 
-     In eos exercitationem quod fugiat aperiam culpa unde tempore debitis, atque pariatur!<br>
-  <a href="mailto:hege@example.com">example@example.com</a></p>
-</footer>
+        <div class="profile-details">
+            <h2>About Me</h2>
+            <p>
+                I am a highly skilled full-stack developer with over 5 years of experience in web and mobile app development. Passionate about coding and learning new technologies, I am always looking for new challenges to tackle.
+            </p>
+
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                <li>HTML/CSS</li>
+                <li>JavaScript</li>
+                <li>Laravel</li>
+                <li>React.js</li>
+                <li>Node.js</li>
+            </ul>
+
+            <h2>Contact Information</h2>
+            <p>Email: johndoe@example.com</p>
+            <p>Phone: +1 (555) 123-4567</p>
+        </div>
+    </div>
+</body>
 </html>

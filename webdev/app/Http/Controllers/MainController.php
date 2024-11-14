@@ -10,8 +10,14 @@ class MainController extends Controller
 {
     public function index()
     {
-        return view('main');
-    }
+        $jobs = Job::all(); // Get all jobs from the database or any other source
+        return view('main', compact('jobs'));    }
+
+    public function profile()
+        {
+            return view('profile');
+        }
+    
 
     public function viewJob()
     {
@@ -28,15 +34,16 @@ class MainController extends Controller
     {
 
         $data = $request ->validate([
+            'category' => 'required',
             'company_name' => 'required',
             'location' => 'required',
             'position' => 'required',
             'allowance' => 'required|numeric',
             'contact' => 'required',
             'others' => 'nullable',
+            'job_status' => 'required'
 
         ]);
-        
 
           //save to database   
           $newjob = Job::create($data);
@@ -51,12 +58,15 @@ class MainController extends Controller
     public function updateJob(Job $job, Request $request)
     {
         $data = $request ->validate([
+            'category'=>'required',
             'company_name' => 'required',
             'location' => 'required',
             'position' => 'required',
             'allowance' => 'required|numeric',
             'contact' => 'required',
             'others' => 'nullable',
+            'job_status' => 'required'
+
 
         ]);
 
@@ -70,4 +80,29 @@ class MainController extends Controller
         return redirect(route('job.view'))->with('Delete Succesful');
 
     }
+
+    public function searchJob_main(Request $request)
+{
+    // Get the search parameters from the request
+    $others = $request->input('search');  // First search box for 'description'
+    $location = $request->input('location');   // Second search box for 'location'
+    $category = $request->input('category');   // Dropdown for 'category'
+
+    // Build the query with conditional filters
+    $jobs = Job::query()
+        ->when($others, function ($query, $others) {
+            return $query->where('others', 'LIKE', "%{$others}%");
+        })
+        ->when($location, function ($query, $location) {
+            return $query->where('location', 'LIKE', "%{$location}%");
+        })
+        ->when($category, function ($query, $category) {
+            return $query->where('category', '=', $category);
+        })
+        ->get();
+
+    // Return the filtered jobs to the view
+    return view('job-result', ['jobs' => $jobs]);
+}
+
 }

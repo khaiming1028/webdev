@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+            $table->string('category');
             $table->string('company_name');
             $table->string('location');
             $table->string('position');
             $table->decimal('allowance', 10, 2);
             $table->string('contact');
-            $table->string('others');
+            $table->string('others')->nullable();
+            $table->string('job_status')->default('Available');
             $table->timestamps();
         });
     }

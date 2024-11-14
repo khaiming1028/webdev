@@ -1,14 +1,18 @@
 <?php
 
 use App\Models\Job;
+use App\Models\Student;
+use App\Models\Forum;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/',[MainController::class,'index'])->name('main');
+Route::get('result',[MainController::class,'searchJob_main'])->name('job.result');
+Route::get('profile-main',[MainController::class,'profile'])->name('view.profile');
 
 //Route for job dashboard page
 Route::prefix('job')->group(function (){
@@ -22,14 +26,22 @@ Route::prefix('job')->group(function (){
 
 //route for student details dashboard page
 Route::prefix('student')->group(function(){
-    Route::get('/',[MainController::class,'viewStudent'])->name('student.view');
-    Route::get('/create',[MainController::class,'createStudent'])->name('student.create');
-    Route::post('/',[MainController::class,'storeStudent'])->name('student.store');
-    Route::get('/{student}/edit',[MainController::class,'editStudent'])->name('student.edit');
-    Route::put('/{student}/update',[MainController::class,'updateStudent'])->name('student.update');
-    Route::delete('/{student}/destroy',[MainController::class,'destroyStudent'])->name('Student.destroy');
+    Route::get('/',[StudentController::class,'viewStudent'])->name('student.view');
+    Route::get('/create',[StudentController::class,'createStudent'])->name('student.create');
+    Route::post('/',[StudentController::class,'storeStudent'])->name('student.store');
+    Route::get('/{student}/edit',[StudentController::class,'editStudent'])->name('student.edit');
+    Route::put('/{student}/update',[StudentController::class,'updateStudent'])->name('student.update');
+    Route::delete('/{student}/destroy',[StudentController::class,'destroyStudent'])->name('student.destroy');
 });
 
+Route::prefix('forum')->group(function (){
+    Route::get('/',[ForumController::class,'viewForum'])->name('forum.view');
+    Route::get('/create',[ForumController::class,'createForum'])->name('forum.create');
+    Route::post('/',[ForumController::class,'storeForum'])->name('forum.store');
+    Route::get('/{forum}/edit',[ForumController::class,'editForum'])->name('forum.edit');
+    Route::put('/{forum}/update',[ForumController::class,'updateForum'])->name('forum.update');
+    Route::delete('/{forum}/destroy',[ForumController::class,'destroyForum'])->name('forum.destroy');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

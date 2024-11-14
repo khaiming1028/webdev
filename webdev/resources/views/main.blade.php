@@ -1,7 +1,7 @@
 <html>
     <head>
 <!--Bootstrap Link-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <!--CSS Main Template Link-->
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
     </head>
@@ -22,15 +22,31 @@
 
 
     <title>Internship Vacancy Portal</title>
-    <nav id= "navbar" class="navbar">
-        <ul>
-      <li><a class="nav-link scrollto active" href="main.php">Home</a></li>
-      <li><a class="nav-link scrollto" href="forum.php">Forum</a></li>
-      <li><a class="nav-link scrollto" href="profile.php">Profile</a></li>
-      <li><a class="nav-link scrollto" href="signup.php">Sign up</a></li>
-      <li><a class="nav-link scrollto" href="#login">Log in</a></li>
-        </ul> 
-</nav>
+    <nav id="navbar" class="navbar">
+      <ul>
+          <li><a class="nav-link scrollto active" href="{{ route('main') }}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('forum.view') }}">Forum</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('view.profile') }}">Profile</a></li>
+  
+          <!-- Log in / Logout Logic -->
+          @if(Auth::check())
+              <!-- Show Logout if user is authenticated -->
+              <li>
+                  <a class="nav-link scrollto" href="#" 
+                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+              </li>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+          @else
+              <!-- Show Log in if user is not authenticated -->
+              <li><a class="nav-link scrollto" href="/">Sign up</a></li>
+              <li><a class="nav-link scrollto" href="{{ route('login') }}">Log in</a></li>
+
+          @endif
+      </ul> 
+  </nav>
+  
 </header>
     <!--introduction section-->
 <!--<section id="intro" class="d-flex align-items-center">
@@ -55,21 +71,26 @@
   <section id="search" class="d-flex align-items-center">
     <div class="container">
       <div class="row gy-4">
-      <div class="col-lg-8 order-2 order-lg-1 d-flex flex-column justify-content-center">
-      <div>
+      <div class="col-lg-12 order-2 order-lg-1 d-flex flex-column justify-content-center">
+      <div class="m-auto">
                 <h2>Search for Jobs</h2>
                 <br>
-               <div class="container">
-                <form class="search-form">
-                <input type="search" class="form-control" id="email" placeholder="Search" name="search">
-                <input type="location" class="form-control" id="location" placeholder="Location" name="location">
+               <div>
+                <form action="{{ route('job.result') }}" method="GET" class="search-form">
+                <input type="search" class="form-control" id="email" placeholder="Search" name="search"  value="{{ request('search') }}">
+                <input type="location" class="form-control" id="location" placeholder="Location" name="location" value="{{ request('location') }}">
                 <select name="status" id="status" placeholder="Job Categories">
-                <option value="success">Engineering</option>
-                <option value="pending">Medical</option>
-                <option value="decline">Information Technology</option>
+                  <option value="">Select Category</option>
+                  <option value="Accounting" {{ request('category') == 'Accounting' ? 'selected' : '' }}>Accounting</option>
+                  <option value="IT" {{ request('category') == 'IT' ? 'selected' : '' }}>IT</option>
+                  <option value="Marketing" {{ request('category') == 'Marketing' ? 'selected' : '' }}>Marketing</option>
+                  <option value="Engineering" {{ request('category') == 'Engineering' ? 'selected' : '' }}>Engineering</option>
+                  <option value="Hospitality" {{ request('category') == 'Hospitality' ? 'selected' : '' }}>Hospitality</option>
+                  <option value="HR" {{ request('category') == 'HR' ? 'selected' : '' }}>HR</option>
+                  <option value="Customer Service" {{ request('category') == 'Customer Service' ? 'selected' : '' }}>Customer Service</option>
             </select>
-            <input type="submit" class="btn btn-info">
-            </form>
+            <button type="submit" class="btn btn-info">Search</button>
+          </form>
                </div>
              </div>
          </div>
@@ -81,152 +102,45 @@
 
 
 <!--Jobs option section-->
-
 <section id="intro" class="d-flex align-items-center">
   <div class="container">
     <div class="row gy-4">
-    <h2>Available Jobs</h2>
-
+      <h2>Available Jobs</h2>
       <div class="col-lg-6 order-2 order-lg-1 d-flex">
-        <div id="carouselExampleControls" class="carousel carousel-dark slide" data-ride="carousel">
+        <!-- Updated Carousel for Bootstrap 5 -->
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="cards-wrapper">
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 1</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 2</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 3</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 4</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+            @foreach ($jobs as $index => $job)
+              <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                <div class="cards-wrapper">
+                  <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ $job->company_name }}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{ $job->position }}</h6>
+                      <p class="card-text">Allowance: ${{ $job->allowance }}</p>
+                      <p class="card-text">Location: {{ $job->location }}</p>
+                      <a href="#" class="card-link">Apply Now</a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="carousel-item">
-              <div class="cards-wrapper">
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 5</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 6</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 7</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 8</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="carousel-item">
-              <div class="cards-wrapper">
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 9</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 10</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 11</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title 12</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            @endforeach
+          </div>
+          <!-- Next and Previous Buttons -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 
     <!--partner section-->
@@ -298,9 +212,9 @@
 
 
 </div>
-</footer><!-- End Footer --
+</footer> 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
     </html>

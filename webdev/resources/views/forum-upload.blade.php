@@ -18,40 +18,17 @@
       <div class="active-dashboard"></div>
     </ul>
     </div>
-        <form method="POST" action="{{route('student.store')}}" class="my-form">
+        <form method="POST" action="{{route('forum.store')}}" class="my-form">
             @csrf
             @method('post')
             <div class="form-group">
-                <label for="type">Student Name</label>
-                <input type="text" name="student_name" id="student_name" placeholder="Student Name" class="form-control">
+                <label for="type">Forum Title</label>
+                <input type="text" name="forums_title" id="forums_title" placeholder="Forum Title " class="form-control">
             </div>
             <div class="form-group">
-                <label for="student_id">Student ID</label>
-                <input type="text" name="student_id" id="student_id" placeholder="Student ID" class="form-control">
+                <label for="brand">Forum Content</label>
+                <input type="text" name="forums_content" id="forums_content" placeholder="Forum Content" class="form-control">
             </div>
-            <div class="form-group">
-                <label for="programme">Programme</label>
-                <input type="text" name="programme" id="programme" placeholder="Programme" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="student_contact">Student Contact</label>
-                <input type="text" name="student_contact" id="student_contact" placeholder="Student Contact" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="resume">Resume</label>
-                <input type="file" name="resume" id="resume" placeholder="Resume" class="form-control-file">
-            </div>
-            <div class="form-group">
-                <label for="status">Status</label>
-                <select name="status" id="status" placeholder="Status" class="form-control">
-                    <option value="Approved">Approved</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Declined">Declined</option>
-                    <option value="None" selected>None</option>
-                </select>
-            </div>
-
-           
             <div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>

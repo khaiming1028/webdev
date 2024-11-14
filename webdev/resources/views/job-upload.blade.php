@@ -22,6 +22,19 @@
         @csrf
         @method('post')
         <div class="form-group">
+            <label for="category">Category</label>
+            <select name="category" id="category"  class="form-control">
+                <option value="Accounting">Accounting</option>
+                <option value="IT">IT</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Hospitality">Hospitality</option>
+                <option value="HR">HR</option>
+                <option value="Customer Service">Customer Service</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
             <label for="type">Company Name</label>
             <input type="text" name="company_name" id="company_name" placeholder="Company Name" class="form-control">
         </div>
@@ -44,6 +57,13 @@
         <div class="form-group">
             <label for="brand">Description</label>
             <input type="text" name="others" id="others" placeholder="Description" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="job_status">Job Status</label>
+            <select name="job_status" id="job_status"  class="form-control">
+                <option value="Available">Available</option>
+                <option value="Closed">Closed</option>
+            </select>
         </div>
        
         <div>
