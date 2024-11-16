@@ -13,17 +13,13 @@ class MainController extends Controller
         $jobs = Job::all(); // Get all jobs from the database or any other source
         return view('main', compact('jobs'));    }
 
-    public function profile()
-        {
-            return view('profile');
-        }
-    
+
 
     public function viewJob()
     {
         $jobs = Job::all();
         return view('view-job',['jobs' => $jobs]);
-    } 
+    }
 
     public function createJob()
     {
@@ -45,14 +41,14 @@ class MainController extends Controller
 
         ]);
 
-          //save to database   
+          //save to database
           $newjob = Job::create($data);
           return redirect(route('job.view'));
     }
 
     public function editJob(Job $job)
     {
-        return view('edit-job',['job' => $job]);  
+        return view('edit-job',['job' => $job]);
     }
 
     public function updateJob(Job $job, Request $request)
@@ -76,7 +72,7 @@ class MainController extends Controller
 
     public function destroyJob(Job $job)
     {
-        $job->delete(); 
+        $job->delete();
         return redirect(route('job.view'))->with('Delete Succesful');
 
     }

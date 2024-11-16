@@ -1,10 +1,10 @@
 <head>
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <script src="https://kit.fontawesome.com/0d113d0983.js" crossorigin="anonymous"></script>
-       
-       
+
+
     </head>
-    
+
     <div class="dashboard-header">
      <div class ="side-nav">
       <a href="#" class ="logo">
@@ -18,7 +18,7 @@
       <div class="active-dashboard"></div>
     </ul>
     </div>
-        <form method="POST" action="{{route('student.store')}}" class="my-form">
+        <form method="POST" action="{{route('student.store')}}" class="my-form" enctype="multipart/form-data">
             @csrf
             @method('post')
             <div class="form-group">
@@ -51,35 +51,35 @@
                 </select>
             </div>
 
-           
+
             <div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
         </div>
-    
-    
-    
+
+
+
     <style>
         .container {
             margin-top: 20px;
         }
-    
+
         .my-form {
             max-width: 500px;
             margin: auto;
         }
-    
+
         .form-group {
             margin-bottom: 15px;
         }
-    
+
         label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
         }
-    
+
         .form-control {
             width: 100%;
             padding: 8px;
@@ -87,13 +87,13 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-    
+
         .form-control-file {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
         }
-    
+
         .btn {
             padding: 10px 20px;
             border: none;
@@ -101,7 +101,7 @@
             cursor: pointer;
             color: #fff;
         }
-    
+
         .btn-primary {
             background-color: #007bff;
         }

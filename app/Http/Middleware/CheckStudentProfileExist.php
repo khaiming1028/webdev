@@ -19,9 +19,6 @@ class CheckStudentProfileExist
         if(!Auth::user()->student){
 
             return redirect()->route('student.create');
-
-
-
         }
         return $next($request);
     }

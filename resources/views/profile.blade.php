@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
+    <title>Student Profile</title>
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -11,30 +11,28 @@
     <div class="profile-container">
         <div class="profile-header">
             <div class="profile-info">
-                <h1 class="name">Joe</h1>
-                <p class="title">Full Stack Developer</p>
-                <p class="location">New York, USA</p>
+                <h1 class="name">{{ $student->student_name }}</h1>
+                <p class="title">Student ID: {{ $student->student_id }}</p>
+                <p class="programme">Programme: {{ $student->programme }}</p>
             </div>
         </div>
 
         <div class="profile-details">
-            <h2>About Me</h2>
-            <p>
-                I am a highly skilled full-stack developer with over 5 years of experience in web and mobile app development. Passionate about coding and learning new technologies, I am always looking for new challenges to tackle.
-            </p>
-
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                <li>HTML/CSS</li>
-                <li>JavaScript</li>
-                <li>Laravel</li>
-                <li>React.js</li>
-                <li>Node.js</li>
-            </ul>
-
             <h2>Contact Information</h2>
-            <p>Email: johndoe@example.com</p>
-            <p>Phone: +1 (555) 123-4567</p>
+            <p>Contact: {{ $student->student_contact }}</p>
+
+            @if($student->status)
+            <h2>Status</h2>
+            <p>{{ $student->status }}</p>
+            @endif
+
+            @if($student->resume)
+            <h2>Resume</h2>
+            <p><a href="{{ asset('storage/' . $student->resume) }}" target="_blank">View Resume</a></p>
+            @else
+            <h2>Resume</h2>
+            <p>No resume uploaded.</p>
+            @endif
         </div>
     </div>
 </body>

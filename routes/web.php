@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('is_user')->prefix('student')->group(function (){
         Route::middleware('check_student_profile')->group(function (){
             Route::get('result',[MainController::class,'searchJob_main'])->name('job.result');
-            Route::get('profile-main',[MainController::class,'profile'])->name('view.profile');
+            Route::get('profile-main',[StudentController::class,'profile'])->name('view.profile');
             Route::get('{student}/edit',[StudentController::class,'editStudent'])->name('student.edit');
             Route::put('{student}/update',[StudentController::class,'updateStudent'])->name('student.update');
 
