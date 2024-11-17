@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v11.1.5...11.x)
+## [Unreleased](https://github.com/laravel/laravel/compare/v01.02.03...master)
+
+## [v01.02.03](https://github.com/laravel/laravel/compare/v11.1.5...v01.02.03) - 2024-11-16
+
+Added security features: Non admin unable to enter admin dashboard pages
+Added Profile page: Login and Profile page are fully functional
 
 ## [v11.1.5](https://github.com/laravel/laravel/compare/v11.1.4...v11.1.5) - 2024-08-14
 
