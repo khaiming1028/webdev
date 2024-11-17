@@ -1,10 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Job;
+use App\Models\JobApplication;
+use App\Models\Student;
+
+
 
 class MainController extends Controller
 {
@@ -101,4 +106,46 @@ class MainController extends Controller
     return view('job-result', ['jobs' => $jobs]);
 }
 
+
+
+public function applyForJob(Request $request, $jobId)
+{
+    // Ensure the user is authenticated
+    $userId = Auth::id();
+
+    // Check if the user has a profile in the students table
+    $student = Student::where('user_id', $userId)->first();
+    if (!$student) {
+        return redirect()->route('student.create')->with('error', 'You must create a profile before applying for a job.');
+    }
+
+    // Check if the job exists
+    $job = Job::findOrFail($jobId);
+
+    // Check if the user has already applied for this job
+    $existingApplication = JobApplication::where('student_id', $student->id)
+        ->where('job_id', $job->id)
+        ->first();
+
+    if ($existingApplication) {
+        return back()->with('error', 'You have already applied for this job.');
+    }
+
+    // Create the job application
+    JobApplication::create([
+        'student_id' => $student->id,
+        'job_id' => $job->id,
+        'status' => 'Pending',
+    ]);
+
+    return redirect()->route('main')->with('success', 'Job application submitted successfully!');
+}
+
+public function viewJobApplications()
+{
+    // Retrieve all job applications with related student and job data
+    $jobApplications = JobApplication::with('student', 'job')->get();
+
+    return view('job-applications', compact('jobApplications'));
+}
 }

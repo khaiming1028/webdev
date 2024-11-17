@@ -15,10 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 //Student
 Route::get('/',[MainController::class,'index'])->name('main');
-//Route for job dashboard page
 
-
-//route for student details dashboard page
 
 
 
@@ -50,17 +47,19 @@ Route::middleware('auth')->group(function () {
 
         Route::get('create',[StudentController::class,'createStudent'])->name('student.create');
         Route::post('/',[StudentController::class,'storeStudent'])->name('student.store');
+        Route::post('/jobs/{job}/apply', [MainController::class, 'applyForJob'])->name('jobs.apply');
+
     });
 
     Route::middleware('is_admin')->prefix('admin')->group(function (){
-        Route::prefix('forum')->group(function (){
-            Route::get('/',[ForumController::class,'viewForum'])->name('forum.view');
-            Route::get('/create',[ForumController::class,'createForum'])->name('forum.create');
-            Route::post('/',[ForumController::class,'storeForum'])->name('forum.store');
-            Route::get('/{forum}/edit',[ForumController::class,'editForum'])->name('forum.edit');
-            Route::put('/{forum}/update',[ForumController::class,'updateForum'])->name('forum.update');
-            Route::delete('/{forum}/destroy',[ForumController::class,'destroyForum'])->name('forum.destroy');
-        });
+        // Route::prefix('forum')->group(function (){
+        //     Route::get('/',[ForumController::class,'viewForum'])->name('forum.view');
+        //     Route::get('/create',[ForumController::class,'createForum'])->name('forum.create');
+        //     Route::post('/',[ForumController::class,'storeForum'])->name('forum.store');
+        //     Route::get('/{forum}/edit',[ForumController::class,'editForum'])->name('forum.edit');
+        //     Route::put('/{forum}/update',[ForumController::class,'updateForum'])->name('forum.update');
+        //     Route::delete('/{forum}/destroy',[ForumController::class,'destroyForum'])->name('forum.destroy');
+        // });
         Route::prefix('job')->group(function (){
             Route::get('/',[MainController::class,'viewJob'])->name('job.view');
             Route::get('/create',[MainController::class,'createJob'])->name('job.create');
@@ -73,6 +72,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/',[StudentController::class,'viewStudent'])->name('student.view');
             Route::delete('/{student}/destroy',[StudentController::class,'destroyStudent'])->name('student.destroy');
         });
+        Route::get('/job-applications', [MainController::class, 'viewJobApplications'])->name('job-applications.view');
 
     });
 

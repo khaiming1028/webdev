@@ -27,12 +27,12 @@
           <li><a class="nav-link scrollto active" href="{{ route('main') }}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{ route('forum.view') }}">Forum</a></li>
           <li><a class="nav-link scrollto" href="{{ route('view.profile') }}">Profile</a></li>
-  
+
           <!-- Log in / Logout Logic -->
           @if(Auth::check())
               <!-- Show Logout if user is authenticated -->
               <li>
-                  <a class="nav-link scrollto" href="#" 
+                  <a class="nav-link scrollto" href="#"
                      onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
               </li>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -44,9 +44,9 @@
               <li><a class="nav-link scrollto" href="{{ route('login') }}">Log in</a></li>
 
           @endif
-      </ul> 
+      </ul>
   </nav>
-  
+
 </header>
     <!--introduction section-->
 <!--<section id="intro" class="d-flex align-items-center">
@@ -97,7 +97,7 @@
       </div>
     </div>
   </section>
-   
+
 
 
 
@@ -119,8 +119,15 @@
                       <h6 class="card-subtitle mb-2 text-muted">{{ $job->position }}</h6>
                       <p class="card-text">Allowance: ${{ $job->allowance }}</p>
                       <p class="card-text">Location: {{ $job->location }}</p>
-                      <a href="#" class="card-link">Apply Now</a>
-                    </div>
+                      <a href="#"
+                      onclick="event.preventDefault(); document.getElementById('apply-form-{{ $job->id }}').submit();"
+                      class="card-link">
+                      Apply Now
+                   </a>
+
+                   <form id="apply-form-{{ $job->id }}" action="{{ route('jobs.apply', $job->id) }}" method="POST" style="display: none;">
+                       @csrf
+                   </form>                    </div>
                   </div>
                 </div>
               </div>
@@ -152,18 +159,18 @@
           <p>They trusted us</p>
         </div>
 
-        
+
 
       </div>
-    </section><!-- End Clients Section --> 
-   
-   
-   
+    </section><!-- End Clients Section -->
+
+
+
     </body>
     <!-------------------------------------End of Body--------------------------------------->
 
-    
-    
+
+
     <footer id="footer">
 
 <div class="footer-top">
@@ -212,7 +219,7 @@
 
 
 </div>
-</footer> 
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
