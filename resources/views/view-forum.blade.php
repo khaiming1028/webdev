@@ -10,40 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>
         /* Reddit-like styling for posts */
-        .post-card {
-            display: flex;
-            background: #fff;
-            border: 1px solid #ddd;
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .post-sidebar {
-            width: 60px;
-            text-align: center;
-            padding-right: 15px;
-            border-right: 1px solid #ddd;
-        }
-        .post-body {
-            flex-grow: 1;
-            padding-left: 15px;
-        }
-        .post-actions {
-            font-size: 0.9rem;
-            color: #888;
-            display: flex;
-            gap: 15px;
-        }
-        .post-actions a, .post-actions form {
-            display: inline-block;
-        }
-        .post-actions button {
-            border: none;
-            background: none;
-            color: #dc3545;
-            cursor: pointer;
-        }
+
     </style>
 </head>
 
@@ -66,7 +33,7 @@
         </div>
     </header>
 
-    <main class="container my-5" style="max-width: 800px;">
+    <main class="container my-5 forum" style="max-width: 800px;">
         <!-- Forum Header -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="mb-0">Forum Discussions</h2>

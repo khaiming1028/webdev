@@ -40,7 +40,7 @@
               </form>
           @else
               <!-- Show Log in if user is not authenticated -->
-              <li><a class="nav-link scrollto" href="/">Sign up</a></li>
+              <li><a class="nav-link scrollto" href="{{ route('register') }}">Sign up</a></li>
               <li><a class="nav-link scrollto" href="{{ route('login') }}">Log in</a></li>
 
           @endif
