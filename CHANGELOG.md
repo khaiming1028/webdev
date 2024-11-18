@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v01.02.04...master)
+## [Unreleased](https://github.com/laravel/laravel/compare/v01.02.05...master)
+
+## [v01.02.05](https://github.com/laravel/laravel/compare/v01.02.04...v01.02.05) - 2024-11-18
+
+ui for admin page,application status 'Declined, 'Accepted' function
 
 ## [v01.02.04](https://github.com/laravel/laravel/compare/v01.02.03...v01.02.04) - 2024-11-17
 
