@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('student_id');
             $table->string('programme');
             $table->string('student_contact');
-            $table->string('status');
+            $table->string('status')->default('None');
             $table->mediumtext('resume');
             $table->timestamps();
         });

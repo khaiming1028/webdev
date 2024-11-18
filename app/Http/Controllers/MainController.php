@@ -148,4 +148,34 @@ public function viewJobApplications()
 
     return view('job-applications', compact('jobApplications'));
 }
+
+public function updateApplicationStatus(JobApplication $jobApplication, $action)
+{
+    // Update status based on the action
+    if ($action === 'accept') {
+        $jobApplication->status = 'Accepted';
+    } elseif ($action === 'decline') {
+        $jobApplication->status = 'Declined';
+    }
+
+    $jobApplication->save();
+
+    return redirect()->back()->with('success', 'Application status updated successfully.');
+}
+
+public function getDashboardData()
+{
+    $data = [
+        'jobApplications' => [
+            'accepted' => JobApplication::where('status', 'Accepted')->count(),
+            'rejected' => JobApplication::where('status', 'Declined')->count(),
+            'pending' => JobApplication::where('status', 'Pending')->count(),
+        ],
+        'jobsPublished' => Job::count(),
+        'usersRegistered' => Student::count(),
+        'jobsApplied' => JobApplication::count(),
+    ];
+
+    return response()->json($data);
+}
 }

@@ -19,21 +19,16 @@ Route::get('/',[MainController::class,'index'])->name('main');
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+//Verify Login
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+//User Route
     Route::middleware('is_user')->prefix('student')->group(function (){
         Route::middleware('check_student_profile')->group(function (){
-            Route::get('result',[MainController::class,'searchJob_main'])->name('job.result');
-            Route::get('profile-main',[StudentController::class,'profile'])->name('view.profile');
-            Route::get('{student}/edit',[StudentController::class,'editStudent'])->name('student.edit');
-            Route::put('{student}/update',[StudentController::class,'updateStudent'])->name('student.update');
+                Route::get('result',[MainController::class,'searchJob_main'])->name('job.result');
+                Route::get('profile-main',[StudentController::class,'profile'])->name('view.profile');
 
             Route::prefix('forum')->group(function (){
                 Route::get('/',[ForumController::class,'viewForum'])->name('forum.view');
@@ -51,6 +46,7 @@ Route::middleware('auth')->group(function () {
 
     });
 
+    //Admin Route
     Route::middleware('is_admin')->prefix('admin')->group(function (){
         // Route::prefix('forum')->group(function (){
         //     Route::get('/',[ForumController::class,'viewForum'])->name('forum.view');
@@ -70,9 +66,17 @@ Route::middleware('auth')->group(function () {
         });
         Route::prefix('student')->group(function(){
             Route::get('/',[StudentController::class,'viewStudent'])->name('student.view');
+            Route::get('{student}/edit',[StudentController::class,'editStudent'])->name('student.edit');
+            Route::put('{student}/update',[StudentController::class,'updateStudent'])->name('student.update');
             Route::delete('/{student}/destroy',[StudentController::class,'destroyStudent'])->name('student.destroy');
         });
         Route::get('/job-applications', [MainController::class, 'viewJobApplications'])->name('job-applications.view');
+        Route::get('/job-applications/{jobApplication}/{action}', [MainController::class, 'updateApplicationStatus'])
+        ->name('job-applications.update-status');
+        Route::get('/dashboard-data', [MainController::class, 'getDashboardData'])->name('dashboard.data');
+        Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth', 'verified'])->name('dashboard');
 
     });
 

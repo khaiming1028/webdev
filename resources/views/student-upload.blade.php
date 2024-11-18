@@ -41,7 +41,7 @@
                 <label for="resume">Resume</label>
                 <input type="file" name="resume" id="resume" placeholder="Resume" class="form-control-file">
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="status">Status</label>
                 <select name="status" id="status" placeholder="Status" class="form-control">
                     <option value="Approved">Approved</option>
@@ -49,7 +49,7 @@
                     <option value="Declined">Declined</option>
                     <option value="None" selected>None</option>
                 </select>
-            </div>
+            </div> --}}
 
 
             <div>

@@ -13,7 +13,8 @@ class JobApplication extends Model
     protected $fillable =
      [
         'student_id',
-        'job_id'
+        'job_id',
+        'status'
     ];
 
     // Relationships

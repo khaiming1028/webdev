@@ -16,21 +16,23 @@
           <a href="{{ route('dashboard') }}">Home</a>
           <a href="{{ route('job.view') }}">View Job List</a>
           <a href="{{ route('student.view') }}">View Student List</a>
-          <a href="{{ route('job-applications.view') }}">View Job Applications</a>
+          <a href="{{ route('job-applications.view') }}">View Student Applications</a>
       </nav>
 
       <!-- Main Content -->
-      <div class="main-content container">
+      <div class="main-content ">
           <div class="d-flex justify-content-between align-items-center mb-4">
-              <h1>List of Job Applications</h1>
           </div>
 
-          <div class="table-responsive">
+          <div class="table-responsive container">
+            <h1>List of Job Applications</h1>
+
               <table class="table table-striped table-bordered align-middle">
                   <thead class="table-dark">
                       <tr>
                           <th scope="col">ID</th>
                           <th scope="col">Student Name</th>
+                          <th scope="col">Student ID</th>
                           <th scope="col">Job Position</th>
                           <th scope="col">Company Name</th>
                           <th scope="col">Application Status</th>
@@ -41,14 +43,23 @@
                   <tbody>
                       @forelse ($jobApplications as $application)
                           <tr>
-                              <th scope="row">{{ $application->id }}</th>
+                              <td scope="row">{{ $application->id }}</td>
                               <td>{{ $application->student->student_name }}</td>
+                              <td>{{ $application->student->student_id }}</td>
                               <td>{{ $application->job->position }}</td>
                               <td>{{ $application->job->company_name }}</td>
                               <td>{{ $application->status }}</td>
                               <td>{{ $application->created_at->format('Y-m-d') }}</td>
                               <td class="text-center">
-                                  <a href="{{ route('job-applications.view', $application) }}" class="btn btn-sm btn-info">View</a>
+                                @if ($application->status === 'Pending')
+                                <a href="{{ route('job-applications.update-status', ['jobApplication' => $application->id, 'action' => 'accept']) }}" class="btn btn-sm btn-success">Accept</a>
+                                <a href="{{ route('job-applications.update-status', ['jobApplication' => $application->id, 'action' => 'decline']) }}" class="btn btn-sm btn-danger">Decline</a>
+                            @else
+                                <span class="badge {{ $application->status === 'Accepted' ? 'bg-success' : 'bg-danger' }}">
+                                    {{ $application->status }}
+                                </span>
+                            @endif
+
                               </td>
                           </tr>
                       @empty

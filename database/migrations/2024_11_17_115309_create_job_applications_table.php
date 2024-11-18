@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('student_id'); // Foreign key to the students table
             $table->unsignedBigInteger('job_id');    // Foreign key to the jobs table
+            $table->string('status')->default('Pending');
             $table->timestamps();
         });
     }

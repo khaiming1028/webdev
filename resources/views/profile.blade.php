@@ -16,7 +16,9 @@
                 <p class="programme">Programme: {{ $student->programme }}</p>
             </div>
         </div>
-
+<div>
+    <a href="{{ route('student.update') }}">Edit Profile</a>
+</div>
         <div class="profile-details">
             <h2>Contact Information</h2>
             <p>Contact: {{ $student->student_contact }}</p>
