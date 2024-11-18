@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v01.02.03...master)
+## [Unreleased](https://github.com/laravel/laravel/compare/v01.02.04...master)
+
+## [v01.02.04](https://github.com/laravel/laravel/compare/v01.02.03...v01.02.04) - 2024-11-17
+
+Added Apply Job Function
 
 ## [v01.02.03](https://github.com/laravel/laravel/compare/v11.1.5...v01.02.03) - 2024-11-16
 
