@@ -29,20 +29,26 @@ Route::middleware('auth')->group(function () {
         Route::middleware('check_student_profile')->group(function (){
                 Route::get('result',[MainController::class,'searchJob_main'])->name('job.result');
                 Route::get('profile-main',[StudentController::class,'profile'])->name('view.profile');
+                Route::get('{student}/edit',[StudentController::class,'editStudent'])->name('student.edit');
+                Route::put('/{student}/update',[StudentController::class,'updateStudent'])->name('student.update');
+                Route::get('/{studentId}/applied-jobs', [StudentController::class, 'showAppliedJobs'])->name('student.applied-jobs');
 
             Route::prefix('forum')->group(function (){
-                Route::get('/',[ForumController::class,'viewForum'])->name('forum.view');
-                Route::get('/create',[ForumController::class,'createForum'])->name('forum.create');
-                Route::post('/',[ForumController::class,'storeForum'])->name('forum.store');
-                Route::get('/{forum}/edit',[ForumController::class,'editForum'])->name('forum.edit');
-                Route::put('/{forum}/update',[ForumController::class,'updateForum'])->name('forum.update');
-                Route::delete('/{forum}/destroy',[ForumController::class,'destroyForum'])->name('forum.destroy');
-            });
+                    Route::get('/',[ForumController::class,'viewForum'])->name('forum.view');
+                    Route::get('/forum/{forum}', [ForumController::class, 'show'])->name('forum.show');
+                    Route::get('/create',[ForumController::class,'createForum'])->name('forum.create');
+                    Route::post('/',[ForumController::class,'storeForum'])->name('forum.store');
+                    Route::get('/{forum}/edit',[ForumController::class,'editForum'])->name('forum.edit');
+                    Route::put('/{forum}/update',[ForumController::class,'updateForum'])->name('forum.update');
+                    Route::delete('/{forum}/destroy',[ForumController::class,'destroyForum'])->name('forum.destroy');
+                });
+
         });
 
         Route::get('create',[StudentController::class,'createStudent'])->name('student.create');
         Route::post('/',[StudentController::class,'storeStudent'])->name('student.store');
         Route::post('/jobs/{job}/apply', [MainController::class, 'applyForJob'])->name('jobs.apply');
+        Route::get('/forum/{forum}', [ForumController::class, 'show'])->name('forum.show');
 
     });
 
@@ -66,15 +72,13 @@ Route::middleware('auth')->group(function () {
         });
         Route::prefix('student')->group(function(){
             Route::get('/',[StudentController::class,'viewStudent'])->name('student.view');
-            Route::get('{student}/edit',[StudentController::class,'editStudent'])->name('student.edit');
-            Route::put('{student}/update',[StudentController::class,'updateStudent'])->name('student.update');
             Route::delete('/{student}/destroy',[StudentController::class,'destroyStudent'])->name('student.destroy');
         });
         Route::get('/job-applications', [MainController::class, 'viewJobApplications'])->name('job-applications.view');
         Route::get('/job-applications/{jobApplication}/{action}', [MainController::class, 'updateApplicationStatus'])
         ->name('job-applications.update-status');
         Route::get('/dashboard-data', [MainController::class, 'getDashboardData'])->name('dashboard.data');
-        Route::get('/dashboard', function () {
+        Route::get('/', function () {
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
 

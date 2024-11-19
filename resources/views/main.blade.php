@@ -24,9 +24,11 @@
     <title>Internship Vacancy Portal</title>
     <nav id="navbar" class="navbar">
       <ul>
-          <li><a class="nav-link scrollto active" href="{{ route('main') }}">Home</a></li>
+          <li><a class="nav-link scrollto " href="{{ route('main') }}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{ route('forum.view') }}">Forum</a></li>
           <li><a class="nav-link scrollto" href="{{ route('view.profile') }}">Profile</a></li>
+          <li><a class="nav-link scrollto " href="{{ route('student.applied-jobs', ['studentId' => Auth::user()->student->id]) }}">Job Applied</a></li>
+
 
           <!-- Log in / Logout Logic -->
           @if(Auth::check())
@@ -77,7 +79,7 @@
                 <br>
                <div>
                 <form action="{{ route('job.result') }}" method="GET" class="search-form">
-                <input type="search" class="form-control" id="email" placeholder="Search" name="search"  value="{{ request('search') }}">
+                <input type="search" class="form-control" id="email" placeholder="Company Name" name="search"  value="{{ request('search') }}">
                 <input type="location" class="form-control" id="location" placeholder="Location" name="location" value="{{ request('location') }}">
                 <select name="status" id="status" placeholder="Job Categories">
                   <option value="">Select Category</option>

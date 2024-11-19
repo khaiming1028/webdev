@@ -29,4 +29,9 @@ public function jobApplications()
 {
     return $this->hasMany(JobApplication::class);
 }
+
+public function forums()
+{
+    return $this->hasMany(Forum::class);
+}
 }

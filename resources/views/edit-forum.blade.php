@@ -1,10 +1,10 @@
 <head>
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <script src="https://kit.fontawesome.com/0d113d0983.js" crossorigin="anonymous"></script>
-       
-       
+
+
     </head>
-    
+
     <div class="dashboard-header">
      <div class ="side-nav">
       <a href="#" class ="logo">
@@ -18,51 +18,51 @@
       <div class="active-dashboard"></div>
     </ul>
     </div>
-        <form method="POST" action="{{route('forum.update',['forunm'=> $forum])}}" class="my-form">
+        <form method="POST" action="{{route('forum.update', $forum->id)}}" class="my-form" nctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="form-group">
                 <label for="type">Forum Title</label>
-                <input type="text" name="company_name" id="company_name" placeholder="Company Name" class="form-control">
+                <input type="text" name="forums_title" id="forums_title" placeholder=" Forum Title" class="form-control">
             </div>
             <div class="form-group">
                 <label for="brand">Forum Content</label>
-                <input type="text" name="location" id="location" placeholder="Location" class="form-control">
+                <input type="text" name="forums_content" id="forums_content" placeholder="Forum Content" class="form-control">
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
         </div>
-           
+
             <div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </form>
         </div>
-    
-    
-    
+
+
+
     <style>
         .container {
             margin-top: 20px;
         }
-    
+
         .my-form {
             max-width: 500px;
             margin: auto;
         }
-    
+
         .form-group {
             margin-bottom: 15px;
         }
-    
+
         label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
         }
-    
+
         .form-control {
             width: 100%;
             padding: 8px;
@@ -70,13 +70,13 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-    
+
         .form-control-file {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
         }
-    
+
         .btn {
             padding: 10px 20px;
             border: none;
@@ -84,7 +84,7 @@
             cursor: pointer;
             color: #fff;
         }
-    
+
         .btn-primary {
             background-color: #007bff;
         }

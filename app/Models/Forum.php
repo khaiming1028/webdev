@@ -11,7 +11,11 @@ class Forum extends Model
     use HasFactory;
     protected $fillable=[
         'forums_title',
-        'forums_content'
+        'forums_content',
+        'student_id'
     ];
-
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

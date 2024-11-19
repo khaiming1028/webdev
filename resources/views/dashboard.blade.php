@@ -21,8 +21,11 @@
         </nav>
 
         <!-- Main Content -->
-        <div class="main-content container">
+        <div class="main-content">
             <h1 class="mt-4">Admin Dashboard</h1>
+
+            <div class="table-responsive container">
+
 
             <div class="row mt-5">
                 <!-- Chart 1 -->
@@ -36,80 +39,110 @@
                     <h3>Overall Statistics</h3>
                     <canvas id="myChart2"></canvas>
                 </div>
+
+                <div class="col-md-6">
+                    <h3>Forums Posted</h3>
+                    <canvas id="myChart3"></canvas>
+                </div>
             </div>
         </div>
     </div>
-
+</div>
     <!-- Fetch Data and Initialize Charts -->
     <script>
-        fetch('{{ route('dashboard.data') }}')
-            .then(response => response.json())
-            .then(data => {
-                // Chart 1: Number of Applications by Status
-                const ctx1 = document.getElementById('myChart1').getContext('2d');
-                new Chart(ctx1, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Accepted', 'Rejected', 'Pending'],
-                        datasets: [{
-                            label: 'Job Applications',
-                            data: [
-                                data.jobApplications.accepted,
-                                data.jobApplications.rejected,
-                                data.jobApplications.pending
-                            ],
-                            backgroundColor: [
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(255, 206, 86, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(255, 206, 86, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: { beginAtZero: true }
-                        }
-                    }
-                });
+      fetch('{{ route('dashboard.data') }}')
+    .then(response => response.json())
+    .then(data => {
+        // Chart 1: Job Applications
+        const ctx1 = document.getElementById('myChart1').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Accepted', 'Rejected', 'Pending'],
+                datasets: [{
+                    label: 'Job Applications',
+                    data: [
+                        data.jobApplications.accepted,
+                        data.jobApplications.rejected,
+                        data.jobApplications.pending
+                    ],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
 
-                // Chart 2: Overall Statistics
-                const ctx2 = document.getElementById('myChart2').getContext('2d');
-                new Chart(ctx2, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Jobs Published', 'Users Registered', 'Jobs Applied'],
-                        datasets: [{
-                            label: 'Overview',
-                            data: [
-                                data.jobsPublished,
-                                data.usersRegistered,
-                                data.jobsApplied
-                            ],
-                            backgroundColor: [
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true
-                    }
-                });
-            })
-            .catch(error => console.error('Error fetching dashboard data:', error));
+        // Chart 2: Overall Statistics (Jobs, Users, and Applications)
+        const ctx2 = document.getElementById('myChart2').getContext('2d');
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['Jobs Published', 'Users Registered', 'Jobs Applied'],
+                datasets: [{
+                    label: 'Overview',
+                    data: [
+                        data.jobsPublished,
+                        data.usersRegistered,
+                        data.jobsApplied
+                    ],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Chart 3: Forums Posted
+        const ctx3 = document.getElementById('myChart3').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Forums Posted'],
+                datasets: [{
+                    label: 'Forums',
+                    data: [data.forumPosted],
+                    backgroundColor: [
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    })
+    .catch(error => console.error('Error fetching dashboard data:', error));
     </script>
 
     <!-- Bootstrap JS -->

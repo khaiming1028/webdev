@@ -8,8 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <div class="profile-container">
-        <div class="profile-header">
+        <div class="profile-details">
             <div class="profile-info">
                 <h1 class="name">{{ $student->student_name }}</h1>
                 <p class="title">Student ID: {{ $student->student_id }}</p>
@@ -28,12 +29,14 @@
 
             @if($student->resume)
             <h2>Resume</h2>
-            <p><a href="{{ asset('storage/' . $student->resume) }}" target="_blank">View Resume</a></p>
+            <p><a href="{{ asset('img/' . $student->resume) }}" target="_blank">View Resume</a></p>
             @else
             <h2>Resume</h2>
             <p>No resume uploaded.</p>
+
             @endif
         </div>
+        <a href="{{ route('student.edit', $student->id) }}" class="btn btn-primary">Edit Profile</a>
     </div>
 </body>
 </html>

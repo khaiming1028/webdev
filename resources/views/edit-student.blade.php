@@ -18,7 +18,7 @@
       <div class="active-dashboard"></div>
     </ul>
     </div>
-    <form method="POST" action="{{route('student.update',['student'=> $student])}}" class="my-form">
+    <form method="POST" action="{{ route('student.update', $student->id) }}" class="my-form" enctype="multipart/form-data">
         @csrf
             @method('put')
             <div class="form-group">
@@ -41,16 +41,6 @@
                 <label for="resume">Resume</label>
                 <input type="file" name="resume" id="resume" placeholder="Resume" class="form-control-file"  value="{{$student->resume}}">
             </div>
-            {{-- <div class="form-group">
-                <label for="status">Status</label>
-                <select name="status" id="status" placeholder="Status" class="form-control" >
-                    <option value="Approved">approved</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Declined">Declined</option>
-                    <option value="None" selected>None</option>
-                </select>
-            </div>
- --}}
              <div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>

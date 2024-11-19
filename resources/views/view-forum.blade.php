@@ -23,11 +23,28 @@
             </div>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="{{ route('main') }}">Home</a></li>
+                    <li><a class="nav-link scrollto " href="{{ route('main') }}">Home</a></li>
                     <li><a class="nav-link scrollto" href="{{ route('forum.view') }}">Forum</a></li>
                     <li><a class="nav-link scrollto" href="{{ route('view.profile') }}">Profile</a></li>
-                    <li><a class="nav-link scrollto" href="/  ">Sign up</a></li>
-                    <li><a class="nav-link scrollto" href="#login">Log in</a></li>
+                    <li><a class="nav-link scrollto " href="{{ route('student.applied-jobs', ['studentId' => Auth::user()->student->id]) }}">Job Applied</a></li>
+
+
+                    <!-- Log in / Logout Logic -->
+                    @if(Auth::check())
+                        <!-- Show Logout if user is authenticated -->
+                        <li>
+                            <a class="nav-link scrollto" href="#"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @else
+                        <!-- Show Log in if user is not authenticated -->
+                        <li><a class="nav-link scrollto" href="{{ route('register') }}">Sign up</a></li>
+                        <li><a class="nav-link scrollto" href="{{ route('login') }}">Log in</a></li>
+
+                    @endif
                 </ul>
             </nav>
         </div>
@@ -41,21 +58,17 @@
         </div>
 
         <!-- Forum Posts -->
-        @forelse ($forums as $forum)
-            <div class="post-card">
-                <!-- Sidebar for post stats (like upvotes) -->
-                <div class="post-sidebar">
-                    <div style="font-size: 1.2em; font-weight: bold;">⬆</div>
-                    <div>123</div> <!-- Placeholder for vote count -->
-                    <div style="font-size: 1.2em; font-weight: bold;">⬇</div>
-                </div>
+        @foreach ($forums as $forum)
+        <div class="post-card">
+            <div class="post-body">
+                <h5 class="card-title">
+                    <a href="{{ route('forum.show', $forum) }}">{{ $forum->forums_title }}</a>
+                </h5>
+                <p class="card-text">{{ $forum->forums_content }}</p>
+                <p><strong>Posted By:</strong> {{ $forum->student->student_name ?? 'Unknown' }}</p>
 
-                <!-- Post Content -->
-                <div class="post-body">
-                    <h5 class="card-title">{{ $forum->forums_title }}</h5>
-                    <p class="card-text">{{ $forum->forums_content }}</p>
-
-                    <!-- Actions -->
+                <!-- Only show the Edit and Delete buttons if the logged-in user is the post owner -->
+                @if (Auth::check() && Auth::user()->student->id === $forum->student_id)
                     <div class="post-actions">
                         <a href="{{ route('forum.edit', $forum) }}" class="text-warning">Edit</a>
                         <form action="{{ route('forum.destroy', $forum) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
@@ -64,11 +77,10 @@
                             <button type="submit">Delete</button>
                         </form>
                     </div>
-                </div>
+                @endif
             </div>
-        @empty
-            <div class="alert alert-info text-center">No posts available.</div>
-        @endforelse
+        </div>
+    @endforeach
     </main>
 
     <!-- Bootstrap JS and dependencies -->

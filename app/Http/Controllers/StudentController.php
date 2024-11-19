@@ -50,15 +50,15 @@ public function storeStudent(Request $request)
     if (!Auth::check()) {
         return redirect()->route('login')->with('error', 'Please log in to create a profile.');
     }
+
     $data = $request->validate([
         'student_name' => 'required',
-        'student_id' => 'required|unique:students,student_id',
+        'student_id' => 'required',
         'programme' => 'required',
         'student_contact' => 'required|numeric',
         'status' => 'nullable',
-         'resume' => 'nullable|file|max:2048',
+        'resume' => 'nullable|file',
     ]);
-
 
     // Handle resume upload
     if ($request->hasFile('resume')) {
@@ -81,26 +81,58 @@ public function storeStudent(Request $request)
     }
 
     public function updateStudent(Student $student, Request $request)
-    {
-        $data = $request ->validate([
-            'student_name' => 'required',
-            'student_id' => 'required',
-            'programme' => 'required',
-            'student_contact' => 'required|numeric',
-            'status' => 'nullable',
-            'resume' =>'nullable'
-
-        ]);
-
-        $student->update($data);
-        return redirect(route('student.view'))->with('Update Succesful');
+{
+    // Ensure the user is logged in
+    if (!Auth::check()) {
+        return redirect()->route('login')->with('error', 'Please log in to update your profile.');
     }
+
+    // Ensure the student belongs to the logged-in user
+    if ($student->user_id !== Auth::id()) {
+        return redirect()->route('view.profile')->with('error', 'Unauthorized action.');
+    }
+
+    // Validate the incoming data
+    $data = $request->validate([
+        'student_name' => 'required',
+        'student_id' => 'required|unique:students,student_id,' . $student->id,
+        'programme' => 'required',
+        'student_contact' => 'required|numeric',
+        'status' => 'nullable',
+        'resume' => 'nullable|file|max:2048',
+    ]);
+
+    // Handle resume upload
+    if ($request->hasFile('resume')) {
+        $data['resume'] = $request->file('resume')->store('resumes', 'public');
+    }
+
+    // Save the updated profile
+    $student->update($data);
+
+    // Redirect with success message
+    return redirect()->route('view.profile')->with('success', 'Profile updated successfully!');
+}
+
 
     public function destroyStudent(Student $student)
     {
         $student->delete();
         return redirect(route('student.view'))->with('Delete Succesful');
 
+    }
+
+
+    public function showAppliedJobs($studentId)
+    {
+        // Find the student by their ID
+        $student = Student::findOrFail($studentId);
+
+        // Get the student's job applications, along with related job data
+        $appliedJobs = $student->jobApplications()->with('job')->get();
+
+        // Return the view with the applied jobs
+        return view('applied-jobs', compact('student', 'appliedJobs'));
     }
 
 }

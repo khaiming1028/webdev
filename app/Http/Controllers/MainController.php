@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\JobApplication;
 use App\Models\Student;
+use App\Models\Forum;
 
 
 
@@ -85,14 +86,14 @@ class MainController extends Controller
     public function searchJob_main(Request $request)
 {
     // Get the search parameters from the request
-    $others = $request->input('search');  // First search box for 'description'
+    $company_name = $request->input('search');  // First search box for 'company_name'
     $location = $request->input('location');   // Second search box for 'location'
     $category = $request->input('category');   // Dropdown for 'category'
 
     // Build the query with conditional filters
     $jobs = Job::query()
-        ->when($others, function ($query, $others) {
-            return $query->where('others', 'LIKE', "%{$others}%");
+        ->when($company_name, function ($query, $company_name) {
+            return $query->where('company_name', 'LIKE', "%{$company_name}%");
         })
         ->when($location, function ($query, $location) {
             return $query->where('location', 'LIKE', "%{$location}%");
@@ -105,6 +106,7 @@ class MainController extends Controller
     // Return the filtered jobs to the view
     return view('job-result', ['jobs' => $jobs]);
 }
+
 
 
 
@@ -174,6 +176,7 @@ public function getDashboardData()
         'jobsPublished' => Job::count(),
         'usersRegistered' => Student::count(),
         'jobsApplied' => JobApplication::count(),
+        'forumPosted' => Forum::count(),
     ];
 
     return response()->json($data);
