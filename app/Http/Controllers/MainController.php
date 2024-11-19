@@ -9,7 +9,8 @@ use App\Models\Job;
 use App\Models\JobApplication;
 use App\Models\Student;
 use App\Models\Forum;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\JobApplicationStatusMail;
 
 
 class MainController extends Controller
@@ -158,11 +159,21 @@ public function updateApplicationStatus(JobApplication $jobApplication, $action)
         $jobApplication->status = 'Accepted';
     } elseif ($action === 'decline') {
         $jobApplication->status = 'Declined';
+    } else {
+        return redirect()->back()->with('error', 'Invalid action.');
     }
 
     $jobApplication->save();
 
-    return redirect()->back()->with('success', 'Application status updated successfully.');
+    // Fetch the student's email
+    $student = $jobApplication->student; // Assuming the relationship exists
+    $user = $student->user; // Assuming the student has a 'user' relationship
+    $email = $user->email;
+
+    // Send the email
+    Mail::to($email)->send(new JobApplicationStatusMail($jobApplication, $jobApplication->status));
+
+    return redirect()->back()->with('success', 'Application status updated successfully and email sent.');
 }
 
 public function getDashboardData()
