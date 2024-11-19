@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v01.02.05...master)
+## [Unreleased](https://github.com/laravel/laravel/compare/v01.02.06...master)
+
+## [v01.02.06](https://github.com/laravel/laravel/compare/v01.02.05...v01.02.06) - 2024-11-19
+
+Forum Function and Admin Dashboard Graph Added
 
 ## [v01.02.05](https://github.com/laravel/laravel/compare/v01.02.04...v01.02.05) - 2024-11-18
 
