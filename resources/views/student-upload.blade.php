@@ -1,108 +1,123 @@
+<html>
 <head>
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS Main Template Link -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <script src="https://kit.fontawesome.com/0d113d0983.js" crossorigin="anonymous"></script>
-
-
-    </head>
-
-    <div class="dashboard-header">
-     <div class ="side-nav">
-      <a href="#" class ="logo">
-        <img src="img/inti4.png" class = "logo-img">
-    </a>
-    <ul class ="nav-links">
-      <li><a href="dashboard.php"><i class="fa-solid fa-house" style="color: #ffffff;"></i><p>Dashboard</p></a></li>
-      <li><a href="job-upload.php"><i class="fa-solid fa-upload" style="color: #ffffff;"></i><p>Post a Job</p></a></li>
-      <li><a href="view-job.php"><i class="fa-solid fa-display" style="color: #ffffff;"></i><p>View Job</p></a></li>
-      <li><a href="view-student.php"><i class="fa-solid fa-user" style="color: #ffffff;"></i><p>View Student Application</p></a></li>
-      <div class="active-dashboard"></div>
-    </ul>
-    </div>
-        <form method="POST" action="{{route('student.store')}}" class="my-form" enctype="multipart/form-data">
-            @csrf
-            @method('post')
-            <div class="form-group">
-                <label for="type">Student Name</label>
-                <input type="text" name="student_name" id="student_name" placeholder="Student Name" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="student_id">Student ID</label>
-                <input type="text" name="student_id" id="student_id" placeholder="Student ID" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="programme">Programme</label>
-                <input type="text" name="programme" id="programme" placeholder="Programme" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="student_contact">Student Contact</label>
-                <input type="text" name="student_contact" id="student_contact" placeholder="Student Contact" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="resume">Resume</label>
-                <input type="file" name="resume" id="resume" placeholder="Resume" class="form-control-file">
-            </div>
-            {{-- <div class="form-group">
-                <label for="status">Status</label>
-                <select name="status" id="status" placeholder="Status" class="form-control">
-                    <option value="Approved">Approved</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Declined">Declined</option>
-                    <option value="None" selected>None</option>
-                </select>
-            </div> --}}
-
-
-            <div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
-        </div>
-
-
-
     <style>
-        .container {
-            margin-top: 20px;
+        /* Additional Custom Styles for the Form */
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            padding: 0;
         }
 
-        .my-form {
-            max-width: 500px;
-            margin: auto;
+        .form-container .form-group {
+            margin-bottom: 20px;
         }
 
-        .form-group {
-            margin-bottom: 15px;
+        .form-container .form-control {
+            border-radius: 5px;
         }
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .form-control {
+        .form-container .btn {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
+            padding: 10px;
         }
 
-        .form-control-file {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            color: #fff;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
+        /* Ensure the form looks good on small screens */
+        @media (max-width: 768px) {
+            .form-container .form-control {
+                font-size: 14px;
+            }
+            .form-container .btn {
+                font-size: 16px;
+            }
         }
     </style>
+</head>
+<body>
+
+  <!-- Header with Navbar -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="logo">
+        <a href="index.html">
+          <img src="img/inti.png" class="img-fluid" alt="Logo">
+        </a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="{{ route('main') }}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('forum.view') }}">Forum</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('view.profile') }}">Profile</a></li>
+          <li><a class="nav-link scrollto" href="{{ Auth::check() && Auth::user()->student ? route('student.applied-jobs', ['studentId' => Auth::user()->student->id]) : '#' }}">Applied Jobs</a></li>
+          @if(Auth::check())
+          <li>
+            <a class="nav-link scrollto" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+          </li>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+          @else
+          <li><a class="nav-link scrollto" href="{{ route('register') }}">Sign up</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('login') }}">Log in</a></li>
+          @endif
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <section class="form-container">
+    <div class="container">
+      <h2 class="text-center mb-4">Student Registration</h2>
+      <form method="POST" action="{{ route('student.store') }}" class="my-form" enctype="multipart/form-data">
+        @csrf
+        @method('post')
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="student_name">Student Name</label>
+              <input type="text" name="student_name" id="student_name" placeholder="Student Name" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="student_id">Student ID</label>
+              <input type="text" name="student_id" id="student_id" placeholder="Student ID" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="programme">Programme</label>
+          <input type="text" name="programme" id="programme" placeholder="Programme" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="student_contact">Student Contact</label>
+          <input type="text" name="student_contact" id="student_contact" placeholder="Student Contact" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="resume">Resume</label>
+          <input type="file" name="resume" id="resume" class="form-control-file">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

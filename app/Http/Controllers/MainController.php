@@ -143,15 +143,17 @@ public function applyForJob(Request $request, $jobId)
 
     return redirect()->route('main')->with('success', 'Job application submitted successfully!');
 }
-
 public function viewJobApplications()
 {
-    // Retrieve all job applications with related student and job data
-    $jobApplications = JobApplication::with('student', 'job')->get();
-    JobApplication::whereDoesntHave('job')->delete();
 
+    // Retrieve all remaining job applications with related student and job data
+    $jobApplications = JobApplication::with('student', 'job')
+    ->whereHas('student')
+    ->whereHas('job')
+    ->get();
     return view('job-applications', compact('jobApplications'));
 }
+
 
 public function updateApplicationStatus(JobApplication $jobApplication, $action)
 {

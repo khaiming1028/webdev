@@ -29,9 +29,10 @@ body {
 }
 
 #header .logo img {
-  padding: 0;
-  margin: 0;
-  max-height: 40px;
+    margin: 100;
+    max-height: 90;
+    margin-bottom: 70;
+    margin-left: 3;
 }
 
 #main {
@@ -341,64 +342,82 @@ canvas {
 
 
 /* Search and Filter Section Styling */
+/* Search and Filter Section */
 #search {
-  background-color: #fff; /* Light background */
-  padding: 60px 0; /* Existing padding around the section */
-  padding-top: calc(60px + 20px); /* Adjust padding for navbar height */
-}
+    background-color: #f9f9f9; /* Subtle gray background */
+    padding: 60px 20px; /* Top and bottom padding */
+    border-top: 3px solid #007bff; /* Add a highlight border */
+  }
 
+  #search h2 {
+    color: #333;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
 
-#search h2 {
+  #search p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
 
-    color: #a08f86;
-    margin: 15px 0 0 0;
-    font-size: 24px;
+  .search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Space between form elements */
+    justify-content: center; /* Center-align elements */
+  }
 
-}
+  .search-form .form-control,
+  .search-form .form-select {
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #ddd;
+    padding: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+  }
 
-.search-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px; /* Space between form elements */
-  align-items: center; /* Center vertically */
+  .search-form .form-control:focus,
+  .search-form .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  }
 
-}
+  .search-form .btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 50px; /* Fully rounded buttons */
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
+    margin-bottom:20px;
+  }
 
-.search-form input[type="search"],
-.search-form input[type="location"],
-.search-form select {
-  flex: 1; /* Make the inputs take full width */
-  min-width: 200px; /* Set a minimum width for better usability */
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd; /* Light border */
-  font-size: 16px;
-  outline: none;
-  transition: all 0.3s ease-in-out;
-}
+  .search-form .btn:hover {
+    background-color: #0056b3;
+  }
 
-.search-form input[type="search"]:focus,
-.search-form input[type="location"]:focus,
-.search-form select:focus {
-  border-color: #007bff; /* Border color on focus */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Subtle focus effect */
-}
+  @media (max-width: 768px) {
+    #search h2 {
+      font-size: 24px;
+    }
 
-.search-form label {
-  font-size: 14px;
-  color: #555; /* Lighter label color */
-  margin-top: 10px;
-}
+    #search p {
+      font-size: 14px;
+    }
 
-.search-form .btn {
-  flex: 0 0 100px; /* Fixed size for the button */
-  background-color: #007bff; /* Button background */
-  color: #fff; /* Button text */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
+    .search-form {
+      flex-direction: column; /* Stack elements vertically */
+    }
+
+    .search-form .btn {
+      width: 100%; /* Full-width button on small screens */
+    }
+  }
+
 
 .search-form .btn:hover {
   background-color: #0056b3; /* Darker on hover */
@@ -796,4 +815,205 @@ canvas {
     background: none;
     color: #dc3545;
     cursor: pointer;
+}
+ /* Section Styling */
+ #intro {
+    background-color: #f8f9fa; /* Light background for contrast */
+    padding: 50px 0; /* Add spacing around the section */
+  }
+
+  #intro h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #343a40; /* Dark color for title */
+  }
+
+  /* Card Styling */
+  .job-card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    border-radius: 8px; /* Rounded corners */
+    border: none; /* Remove default card border */
+    transition: transform 0.2s, box-shadow 0.2s; /* Add hover effects */
+  }
+
+  .job-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+  }
+
+  .job-card .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #000; /* Primary color for company name */
+  }
+
+  .job-card .card-subtitle {
+    font-size: 1rem;
+    color: #6c757d; /* Muted text for position */
+  }
+
+  .job-card .card-text {
+    font-size: 0.95rem;
+    color: #495057; /* Slightly darker gray for text */
+  }
+
+  /* Button Styling */
+  .btn-apply {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 20px; /* Rounded button */
+    padding: 0.4rem 1rem; /* Comfortable padding */
+    transition: background-color 0.2s, border-color 0.2s; /* Smooth transitions */
+  }
+
+  .btn-apply:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  /* Partner Section Styling */
+#partner {
+    background-color: #fff; /* Light gray background */
+    padding: 60px 20px; /* Space around the section */
+  }
+
+  #partner .section-title h2 {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #333; /* Darker text color */
+  }
+
+  #partner .section-title p {
+    font-size: 16px;
+    text-align: center;
+    color: #666; /* Subtle text color */
+    margin-bottom: 30px;
+  }
+
+  .partner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between logos */
+  }
+
+  .partner .col-lg-2 {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+  }
+
+  .partner .col-lg-2:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Add a shadow on hover */
+  }
+
+  .partner-logo {
+    max-width: 100%; /* Ensure logos are responsive */
+    height: auto;
+    filter: grayscale(100%); /* Apply grayscale filter */
+    transition: filter 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+  .partner-logo:hover {
+    filter: grayscale(0); /* Restore color on hover */
+  }
+
+  @media (max-width: 768px) {
+    #partner {
+      padding: 40px 10px; /* Adjust padding for smaller screens */
+    }
+
+    .partner .col-lg-2 {
+      flex: 1 1 45%; /* Adjust logo size for smaller screens */
+      max-width: 45%; /* Reduce column width */
+    }
+  }
+
+  @media (max-width: 576px) {
+    .partner .col-lg-2 {
+      flex: 1 1 100%; /* Full-width logos for very small screens */
+      max-width: 100%;
+    }
+  }
+  .apply body {
+    background-color: #f8f9fa; /* Light gray background */
+    padding-top: 5rem;
+}
+
+.apply .container {
+    background-color: #ffffff; /* White card background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 30px;
+}
+
+.apply h2 {
+    font-weight: bold;
+    color: #343a40; /* Dark gray */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.apply .list-group-item {
+    background-color: #fdfdfd; /* Slightly off-white */
+    border: 1px solid #e9ecef; /* Light gray border */
+    margin-bottom: 10px; /* Add spacing between items */
+    border-radius: 6px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Light shadow */
+}
+
+.apply .list-group-item strong {
+    color: #495057; /* Medium gray text for labels */
+}
+
+p {
+    text-align: center;
+    color: #6c757d; /* Muted gray */
+    font-size: 18px;
+}
+
+.admin .container {
+    margin-top: 20px;
+}
+
+.admin .my-form {
+    max-width: 500px;
+    margin: auto;
+}
+
+.admin .form-group {
+    margin-bottom: 15px;
+}
+
+.admin label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.admin .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.admin .form-control-file {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.admin .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.admin .btn-primary {
+    background-color: #007bff;
 }

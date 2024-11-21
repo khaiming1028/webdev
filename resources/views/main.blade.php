@@ -3,7 +3,7 @@
 <!--Bootstrap Link-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <!--CSS Main Template Link-->
-<link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     </head>
 
     <!-------------------------------------Start of Body--------------------------------------->
@@ -15,147 +15,157 @@
     <div class="container d-flex align-items-center justify-content-between">
 
       <div class="logo">
-        <h1 class="text-light"><a href="main.php"><span>LOGO</span></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        <a href="index.html">
+          <img src="img/inti.png" class="img-fluid" alt="Logo">
+        </a>
       </div>
 
-
-    <title>Internship Vacancy Portal</title>
-    <nav id="navbar" class="navbar">
-      <ul>
-          <li><a class="nav-link scrollto " href="{{ route('main') }}">Home</a></li>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="{{ route('main') }}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{ route('forum.view') }}">Forum</a></li>
           <li><a class="nav-link scrollto" href="{{ route('view.profile') }}">Profile</a></li>
-          <li><a class="nav-link scrollto"
-            href="{{ Auth::check() && Auth::user()->student ? route('student.applied-jobs', ['studentId' => Auth::user()->student->id]) : '#' }}">
-             Applied Jobs
-         </a></li>
-
-
-          <!-- Log in / Logout Logic -->
+          <li>
+            <a class="nav-link scrollto" href="{{ Auth::check() && Auth::user()->student ? route('student.applied-jobs', ['studentId' => Auth::user()->student->id]) : '#' }}">
+              Applied Jobs
+            </a>
+          </li>
           @if(Auth::check())
-              <!-- Show Logout if user is authenticated -->
-              <li>
-                  <a class="nav-link scrollto" href="#"
-                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-              </li>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-              </form>
+          <li>
+            <a class="nav-link scrollto" href="#"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+          </li>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
           @else
-              <!-- Show Log in if user is not authenticated -->
-              <li><a class="nav-link scrollto" href="{{ route('register') }}">Sign up</a></li>
-              <li><a class="nav-link scrollto" href="{{ route('login') }}">Log in</a></li>
-
+          <li><a class="nav-link scrollto" href="{{ route('register') }}">Sign up</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('login') }}">Log in</a></li>
           @endif
-      </ul>
-  </nav>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-</header>
-    <!--introduction section-->
-<!--<section id="intro" class="d-flex align-items-center">
-    <div class="container">
+  <!-- Search Section -->
+  <section id="search" class="d-flex align-items-center">
+    <div class="container pt-5">
       <div class="row gy-4">
-        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h1>INTI Online Internship Vancancy Portal</h1>
-          <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas ex temporibus suscipit beatae aliquid dolor quas dolores quisquam reprehenderit incidunt. Tenetur autem sapiente veritatis accusantium maiores veniam ad quaerat voluptatum.</h2>
-          <div>
-            <a href="#search" class="btn-get-started scrollto">Find Job Now</a>
+        <div class="col-lg-12 d-flex flex-column justify-content-center">
+          <div class="m-auto text-center">
+            <h2>Search for Jobs</h2>
+            <form action="{{ route('job.result') }}" method="GET" class="search-form">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <input type="search" class="form-control" id="email" placeholder="Company Name" name="search" value="{{ request('search') }}">
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" id="location" placeholder="Location" name="location" value="{{ request('location') }}">
+                </div>
+                <div class="col-md-4">
+                  <select name="status" id="status" class="form-select">
+                    <option value="">Select Category</option>
+                    <option value="Accounting" {{ request('category') == 'Accounting' ? 'selected' : '' }}>Accounting</option>
+                    <option value="IT" {{ request('category') == 'IT' ? 'selected' : '' }}>IT</option>
+                    <option value="Marketing" {{ request('category') == 'Marketing' ? 'selected' : '' }}>Marketing</option>
+                    <option value="Engineering" {{ request('category') == 'Engineering' ? 'selected' : '' }}>Engineering</option>
+                    <option value="Hospitality" {{ request('category') == 'Hospitality' ? 'selected' : '' }}>Hospitality</option>
+                    <option value="HR" {{ request('category') == 'HR' ? 'selected' : '' }}>HR</option>
+                    <option value="Customer Service" {{ request('category') == 'Customer Service' ? 'selected' : '' }}>Customer Service</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mt-4">
+                <button type="submit" class="btn btn-info">Search</button>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="col-lg-6 order-1 order-lg-2 intro-img">
-          <img src="img/job2.jpg" class="img-fluid animated" alt="">
-        </div>
       </div>
     </div>
   </section>
-  -->
-
-    <!--search and filter section-->
-  <section id="search" class="d-flex align-items-center">
-    <div class="container">
-      <div class="row gy-4">
-      <div class="col-lg-12 order-2 order-lg-1 d-flex flex-column justify-content-center">
-      <div class="m-auto">
-                <h2>Search for Jobs</h2>
-                <br>
-               <div>
-                <form action="{{ route('job.result') }}" method="GET" class="search-form">
-                <input type="search" class="form-control" id="email" placeholder="Company Name" name="search"  value="{{ request('search') }}">
-                <input type="location" class="form-control" id="location" placeholder="Location" name="location" value="{{ request('location') }}">
-                <select name="status" id="status" placeholder="Job Categories">
-                  <option value="">Select Category</option>
-                  <option value="Accounting" {{ request('category') == 'Accounting' ? 'selected' : '' }}>Accounting</option>
-                  <option value="IT" {{ request('category') == 'IT' ? 'selected' : '' }}>IT</option>
-                  <option value="Marketing" {{ request('category') == 'Marketing' ? 'selected' : '' }}>Marketing</option>
-                  <option value="Engineering" {{ request('category') == 'Engineering' ? 'selected' : '' }}>Engineering</option>
-                  <option value="Hospitality" {{ request('category') == 'Hospitality' ? 'selected' : '' }}>Hospitality</option>
-                  <option value="HR" {{ request('category') == 'HR' ? 'selected' : '' }}>HR</option>
-                  <option value="Customer Service" {{ request('category') == 'Customer Service' ? 'selected' : '' }}>Customer Service</option>
-            </select>
-            <button type="submit" class="btn btn-info">Search</button>
-          </form>
-               </div>
-             </div>
-         </div>
-      </div>
-    </div>
-  </section>
-
-
 
 
 <!--Jobs option section-->
 <section id="intro" class="d-flex align-items-center">
-  
-  <div class="container">
-    <div class="row gy-4">
-      <h2>Available Jobs</h2>
-      <div>
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          @foreach ($jobs as $job)
-            <div class="col">
-              <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                  <h5 class="card-title">{{ $job->company_name }}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">{{ $job->position }}</h6>
-                  <p class="card-text">Allowance: ${{ $job->allowance }}</p>
-                  <p class="card-text">Location: {{ $job->location }}</p>
-                  <a href="#"
-                    onclick="event.preventDefault(); document.getElementById('apply-form-{{ $job->id }}').submit();"
-                    class="card-link">
-                    Apply Now
-                  </a>
-
-                  <form id="apply-form-{{ $job->id }}" action="{{ route('jobs.apply', $job->id) }}" method="POST" style="display: none;">
+    <div class="container">
+      <div class="row gy-4">
+        <h2 class="text-center mb-4">Available Jobs</h2>
+        <div>
+          <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach ($jobs as $job)
+              <div class="col">
+                <div class="card job-card">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ $job->company_name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ $job->position }}</h6>
+                    <p class="card-text"><strong>Allowance:</strong> ${{ $job->allowance }}</p>
+                    <p class="card-text"><strong>Location:</strong> {{ $job->location }}</p>
+                    <a href="#"
+                      onclick="event.preventDefault(); document.getElementById('apply-form-{{ $job->id }}').submit();"
+                      class="card-link btn btn-primary btn-apply">
+                      Apply Now
+                    </a>
+                    <form id="apply-form-{{ $job->id }}" action="{{ route('jobs.apply', $job->id) }}" method="POST" style="display: none;">
                       @csrf
-                  </form>                    
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
-          @endforeach
+            @endforeach
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
 
-    <!--partner section-->
-    <section id="partner" class="clients section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Company</h2>
-          <p>They trusted us</p>
-        </div>
-
-
-
+<section id="partner" class="clients section-bg">
+    <div class="container" data-aos="fade-up">
+      <!-- Section Title -->
+      <div class="section-title">
+        <h2>Company</h2>
+        <p>They trusted us</p>
       </div>
-    </section><!-- End Clients Section -->
+
+      <!-- Partner Logos -->
+      <div class="partner row justify-content-center">
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="img/intel.png" class="partner-logo" alt="Company 1">
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="img/amd.jpg" class="partner-logo" alt="Company 2">
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="img/keysight.png" class="partner-logo" alt="Company 3">
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="img/exabyte.png" class="partner-logo" alt="Company 4">
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="img/plexus.png" class="partner-logo" alt="Company 5">
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="img/huawei.png" class="partner-logo" alt="Company 5">
+          </div>
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="img/jabil.png" class="partner-logo" alt="Company 5">
+          </div>
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="img/broadcom.png" class="partner-logo" alt="Company 5">
+          </div>
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="img/westerndigital.jpg" class="partner-logo" alt="Company 5">
+          </div>
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="img/images.png" class="partner-logo" alt="Company 5">
+          </div>
+      </div>
+    </div>
+  </section>
+
+
 
 
 
@@ -191,14 +201,6 @@
       </div>
 
 
-      <div class="col-lg-3 col-md-6 footer-links">
-        <h4>Our Social Networks</h4>
-        <div class="social-links mt-3">
-          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        </div>
-      </div>
 
     </div>
   </div>

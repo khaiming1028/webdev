@@ -125,14 +125,55 @@ public function storeStudent(Request $request)
 
     public function showAppliedJobs($studentId)
     {
-        // Find the student by their ID
+        // Find the student by their ID and ensure they exist
         $student = Student::findOrFail($studentId);
 
-        // Get the student's job applications, along with related job data
-        $appliedJobs = $student->jobApplications()->with('job')->get();
+        // Get the student's job applications where the student and job both exist and meet certain conditions
+        $appliedJobs = $student->jobApplications()
+            ->whereHas('student', function($query) use ($studentId) {
+                // Optional: Apply a filter on the student relationship if needed
+                $query->where('id', $studentId);
+            })
+            ->whereHas('job', function($query) {
+                // Optional: Apply a filter on the job relationship if needed, e.g., filter by job position
+                $query->whereNotNull('company_name'); // Example filter: Only jobs with a company name
+            })
+            ->with('job') // Ensure job data is included
+            ->get();
 
         // Return the view with the applied jobs
         return view('applied-jobs', compact('student', 'appliedJobs'));
     }
 
+
+    public function editStudentAdmin(Student $student)
+    {
+        return view('edit-student-admin',['student' => $student]);
+    }
+
+    public function updateStudentAdmin(Student $student, Request $request)
+{
+
+
+    // Validate the incoming data
+    $data = $request->validate([
+        'student_name' => 'required',
+        'student_id' => 'required',
+        'programme' => 'required',
+        'student_contact' => 'required|numeric',
+        'status' => 'nullable',
+        'resume' => 'nullable|file|max:2048',
+    ]);
+
+    // Handle resume upload
+    if ($request->hasFile('resume')) {
+        $data['resume'] = $request->file('resume')->store('resumes', 'public');
+    }
+
+    // Save the updated profile
+    $student->update($data);
+
+    // Redirect with success message
+    return redirect()->route('student.view')->with('success', 'Profile updated successfully!');
+}
 }

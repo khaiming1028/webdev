@@ -1,23 +1,23 @@
+!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <script src="https://kit.fontawesome.com/0d113d0983.js" crossorigin="anonymous"></script>
-
-
-    </head>
-
-    <div class="dashboard-header">
-     <div class ="side-nav">
-      <a href="#" class ="logo">
-        <img src="img/inti4.png" class = "logo-img">
-    </a>
-    <ul class ="nav-links">
-      <li><a href="dashboard.php"><i class="fa-solid fa-house" style="color: #ffffff;"></i><p>Dashboard</p></a></li>
-      <li><a href="job-upload.php"><i class="fa-solid fa-upload" style="color: #ffffff;"></i><p>Post a Job</p></a></li>
-      <li><a href="view-job.php"><i class="fa-solid fa-display" style="color: #ffffff;"></i><p>View Job</p></a></li>
-      <li><a href="view-student.php"><i class="fa-solid fa-user" style="color: #ffffff;"></i><p>View Student Application</p></a></li>
-      <div class="active-dashboard"></div>
-    </ul>
-    </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - List of Jobs</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+    <div class="view-job-page admin pt-5">
+        <!-- Sidebar -->
+        <nav class="sidenav">
+            <a href="{{ route('dashboard') }}">Home</a>
+            <a href="{{ route('job.view') }}">View Job List</a>
+            <a href="{{ route('student.view') }}">View Student List</a>
+            <a href="{{ route('job-applications.view') }}">View Student Applications</a>
+        </nav>
         <form method="POST" action="{{route('job.update',['job'=> $job])}}" class="my-form">
             @csrf
             @method('put')
@@ -72,50 +72,3 @@
         </div>
 
 
-
-    <style>
-        .container {
-            margin-top: 20px;
-        }
-
-        .my-form {
-            max-width: 500px;
-            margin: auto;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .form-control-file {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            color: #fff;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-        }
-    </style>

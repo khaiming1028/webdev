@@ -72,6 +72,8 @@ Route::middleware('auth')->group(function () {
         });
         Route::prefix('student')->group(function(){
             Route::get('/',[StudentController::class,'viewStudent'])->name('student.view');
+            Route::get('{student}/edit',[StudentController::class,'editStudentAdmin'])->name('student.edit.admin');
+            Route::put('/{student}/update',[StudentController::class,'updateStudentAdmin'])->name('student.update.admin');
             Route::delete('/{student}/destroy',[StudentController::class,'destroyStudent'])->name('student.destroy');
         });
         Route::get('/job-applications', [MainController::class, 'viewJobApplications'])->name('job-applications.view');

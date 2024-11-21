@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    <div class="view-job-page">
+    <div class="view-job-page admin pt-5">
         <!-- Sidebar -->
         <nav class="sidenav">
             <a href="{{ route('dashboard') }}">Home</a>
@@ -19,7 +19,7 @@
             <a href="{{ route('job-applications.view') }}">View Student Applications</a>
         </nav>
 
-        
+
     <form method="POST" action="{{route('job.store')}}" class="my-form">
         @csrf
         @method('post')
@@ -35,7 +35,7 @@
                 <option value="Customer Service">Customer Service</option>
             </select>
         </div>
-        
+
         <div class="form-group">
             <label for="type">Company Name</label>
             <input type="text" name="company_name" id="company_name" placeholder="Company Name" class="form-control">
@@ -67,7 +67,7 @@
                 <option value="Closed">Closed</option>
             </select>
         </div>
-       
+
         <div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
@@ -75,50 +75,3 @@
     </div>
 
 
-
-<style>
-    .container {
-        margin-top: 20px;
-    }
-
-    .my-form {
-        max-width: 500px;
-        margin: auto;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-
-    .form-control {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    .form-control-file {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-    }
-
-    .btn {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        color: #fff;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
-    }
-</style>

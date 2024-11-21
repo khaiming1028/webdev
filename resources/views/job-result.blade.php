@@ -51,6 +51,11 @@
             color: #0056b3;
             text-decoration: underline;
         }
+
+        /* Move the title and content lower */
+        main {
+            padding-top:2rem;
+                }
     </style>
 </head>
 <body>
@@ -89,7 +94,7 @@
                             <p><strong>Location:</strong> {{ $job->location }}</p>
                             <p><strong>Description:</strong> {{ $job->others }}</p>
                             <p><strong>Allowance:</strong> {{ $job->allowance }}</p>
-                            <a href="#" onclick="event.preventDefault(); console.log('Apply Now clicked'); document.getElementById('apply-form-{{ $job->id }}').submit();" class="card-link">
+                            <a class=" btn btn-primary btn-apply"href="#" onclick="event.preventDefault(); console.log('Apply Now clicked'); document.getElementById('apply-form-{{ $job->id }}').submit();" class="card-link">
                                 Apply Now
                             </a>
                             <form id="apply-form-{{ $job->id }}" action="{{ route('jobs.apply', $job->id) }}" method="POST" style="display: none;">

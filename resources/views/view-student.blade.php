@@ -61,7 +61,7 @@
                <a href="{{ asset('img/' . $student->resume) }}" download="{{$student->resume}}">
                  <td>{{$student->resume}}</td>
              </a>
-               <td><a href="{{route('student.edit', ['student' => $student])}}" class="btn btn-sm btn-warning">Edit</a></td>
+               <td><a href="{{route('student.edit.admin', ['student' => $student])}}" class="btn btn-sm btn-warning">Edit</a></td>
                <td>
                  <form method="post" action="{{route('student.destroy', ['student' => $student])}}">
                    @csrf
