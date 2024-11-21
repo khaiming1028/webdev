@@ -12,6 +12,6 @@
     <p>If you have any questions, feel free to contact us.</p>
 
     <p>Best regards,</p>
-    <p>INTI COLLEGE PENANG/p>
+    <p>INTI COLLEGE PENANG</p>
 </body>
 </html>

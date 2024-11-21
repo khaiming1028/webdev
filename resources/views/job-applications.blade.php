@@ -46,7 +46,7 @@
                               <td scope="row">{{ $application->id }}</td>
                               <td>{{ $application->student->student_name }}</td>
                               <td>{{ $application->student->student_id }}</td>
-                              <td>{{ $application->job->position }}</td>
+                              <td>{{ $application->job->position ?? 'N/A' }}</td>
                               <td>{{ $application->job->company_name }}</td>
                               <td>{{ $application->status }}</td>
                               <td>{{ $application->created_at->format('Y-m-d') }}</td>

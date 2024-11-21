@@ -57,13 +57,13 @@
                 <label for="brand">Description</label>
                 <input type="text" name="others" id="others" placeholder="Description" class="form-control" value="{{$job->others}}">
             </div>
-            {{-- <div class="form-group">
+            <div class="form-group">
                 <label for="job_status">Job Status</label>
                 <select name="job_status" id="job_status"  class="form-control">
                     <option value="Available">Available</option>
                     <option value="Closed">Closed</option>
                 </select>
-            </div> --}}
+            </div>
 
             <div>
                 <button type="submit" class="btn btn-primary">Update</button>

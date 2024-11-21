@@ -148,6 +148,7 @@ public function viewJobApplications()
 {
     // Retrieve all job applications with related student and job data
     $jobApplications = JobApplication::with('student', 'job')->get();
+    JobApplication::whereDoesntHave('job')->delete();
 
     return view('job-applications', compact('jobApplications'));
 }

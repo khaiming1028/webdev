@@ -50,7 +50,7 @@
         </div>
     </header>
 
-    <main class="container my-5 forum" style="max-width: 800px;">
+    <main class="container my-5 forum pt-5" style="max-width: 800px;">
         <!-- Forum Header -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="mb-0">Forum Discussions</h2>

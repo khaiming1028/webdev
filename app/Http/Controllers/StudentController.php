@@ -95,7 +95,7 @@ public function storeStudent(Request $request)
     // Validate the incoming data
     $data = $request->validate([
         'student_name' => 'required',
-        'student_id' => 'required|unique:students,student_id,' . $student->id,
+        'student_id' => 'required',
         'programme' => 'required',
         'student_contact' => 'required|numeric',
         'status' => 'nullable',

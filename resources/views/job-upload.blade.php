@@ -1,23 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<link rel="stylesheet" href="{{asset('css/style.css')}}">
-<script src="https://kit.fontawesome.com/0d113d0983.js" crossorigin="anonymous"></script>
-   
-   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - List of Jobs</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
+<body>
+    <div class="view-job-page">
+        <!-- Sidebar -->
+        <nav class="sidenav">
+            <a href="{{ route('dashboard') }}">Home</a>
+            <a href="{{ route('job.view') }}">View Job List</a>
+            <a href="{{ route('student.view') }}">View Student List</a>
+            <a href="{{ route('job-applications.view') }}">View Student Applications</a>
+        </nav>
 
-<div class="dashboard-header">
- <div class ="side-nav">
-  <a href="#" class ="logo">
-    <img src="img/inti4.png" class = "logo-img">
-</a>
-<ul class ="nav-links">
-  <li><a href="dashboard.php"><i class="fa-solid fa-house" style="color: #ffffff;"></i><p>Dashboard</p></a></li>
-  <li><a href="job-upload.php"><i class="fa-solid fa-upload" style="color: #ffffff;"></i><p>Post a Job</p></a></li>
-  <li><a href="view-job.php"><i class="fa-solid fa-display" style="color: #ffffff;"></i><p>View Job</p></a></li>
-  <li><a href="view-student.php"><i class="fa-solid fa-user" style="color: #ffffff;"></i><p>View Student Application</p></a></li>
-  <div class="active-dashboard"></div>
-</ul>
-</div>
+        
     <form method="POST" action="{{route('job.store')}}" class="my-form">
         @csrf
         @method('post')

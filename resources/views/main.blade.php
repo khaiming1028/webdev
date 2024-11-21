@@ -27,7 +27,10 @@
           <li><a class="nav-link scrollto " href="{{ route('main') }}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{ route('forum.view') }}">Forum</a></li>
           <li><a class="nav-link scrollto" href="{{ route('view.profile') }}">Profile</a></li>
-          <li><a class="nav-link scrollto " href="{{ route('student.applied-jobs', ['studentId' => Auth::user()->student->id]) }}">Job Applied</a></li>
+          <li><a class="nav-link scrollto"
+            href="{{ Auth::check() && Auth::user()->student ? route('student.applied-jobs', ['studentId' => Auth::user()->student->id]) : '#' }}">
+             Applied Jobs
+         </a></li>
 
 
           <!-- Log in / Logout Logic -->
@@ -105,45 +108,33 @@
 
 <!--Jobs option section-->
 <section id="intro" class="d-flex align-items-center">
+  
   <div class="container">
     <div class="row gy-4">
       <h2>Available Jobs</h2>
-      <div class="col-lg-6 order-2 order-lg-1 d-flex">
-        <!-- Updated Carousel for Bootstrap 5 -->
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            @foreach ($jobs as $index => $job)
-              <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                <div class="cards-wrapper">
-                  <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ $job->company_name }}</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">{{ $job->position }}</h6>
-                      <p class="card-text">Allowance: ${{ $job->allowance }}</p>
-                      <p class="card-text">Location: {{ $job->location }}</p>
-                      <a href="#"
-                      onclick="event.preventDefault(); document.getElementById('apply-form-{{ $job->id }}').submit();"
-                      class="card-link">
-                      Apply Now
-                   </a>
+      <div>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          @foreach ($jobs as $job)
+            <div class="col">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ $job->company_name }}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ $job->position }}</h6>
+                  <p class="card-text">Allowance: ${{ $job->allowance }}</p>
+                  <p class="card-text">Location: {{ $job->location }}</p>
+                  <a href="#"
+                    onclick="event.preventDefault(); document.getElementById('apply-form-{{ $job->id }}').submit();"
+                    class="card-link">
+                    Apply Now
+                  </a>
 
-                   <form id="apply-form-{{ $job->id }}" action="{{ route('jobs.apply', $job->id) }}" method="POST" style="display: none;">
-                       @csrf
-                   </form>                    </div>
-                  </div>
+                  <form id="apply-form-{{ $job->id }}" action="{{ route('jobs.apply', $job->id) }}" method="POST" style="display: none;">
+                      @csrf
+                  </form>                    
                 </div>
               </div>
-            @endforeach
-          </div>
-          <!-- Next and Previous Buttons -->
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+            </div>
+          @endforeach
         </div>
       </div>
     </div>
