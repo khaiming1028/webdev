@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
                 Route::get('{student}/edit',[StudentController::class,'editStudent'])->name('student.edit');
                 Route::put('/{student}/update',[StudentController::class,'updateStudent'])->name('student.update');
                 Route::get('/{studentId}/applied-jobs', [StudentController::class, 'showAppliedJobs'])->name('student.applied-jobs');
+                Route::get('/resume', [StudentController::class, 'view_resume'])->name('view.resume');
 
             Route::prefix('forum')->group(function (){
                     Route::get('/',[ForumController::class,'viewForum'])->name('forum.view');

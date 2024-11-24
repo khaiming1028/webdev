@@ -72,7 +72,7 @@
         <div class="profile-section resume">
             <h2>Resume</h2>
             @if($student->resume)
-            <p><a href="{{ asset('img/' . $student->resume) }}" target="_blank">View Resume</a></p>
+            <p><a href="{{ route('view.resume') }}?resume={{$student->resume}}" target="_blank">View Resume</a></p>
             @else
             <p>No resume uploaded.</p>
             @endif

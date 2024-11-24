@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\JobApplication;
 use App\Models\User;
-
-
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -143,6 +142,14 @@ public function storeStudent(Request $request)
 
         // Return the view with the applied jobs
         return view('applied-jobs', compact('student', 'appliedJobs'));
+    }
+
+    public function view_resume(Request $request){
+        if(Storage::disk('public')->has($request->resume)){
+            return Storage::disk('public')->response($request->resume);
+        }
+
+        abort(404);
     }
 
 
