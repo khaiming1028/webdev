@@ -10,12 +10,10 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <header id="header" class="fixed-top d-flex align-items-center">
+     <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
             <div class="logo">
-                <a href="index.html">
-                    <img src="img/inti.png" class="img-fluid" alt="Logo">
-                </a>
+                <h1 class="text-light"><a href="{{ route('main') }}"><span>INTI</span></a></h1>
             </div>
             <nav id="navbar" class="navbar">
                 <ul>
