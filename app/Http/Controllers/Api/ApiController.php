@@ -28,6 +28,7 @@ class ApiController extends Controller
     {
 
         $validator = Validator::make($request->all(),[
+            'category'=> 'required',
             'company_name' => 'required',
             'location' => 'required',
             'position' => 'required',
@@ -45,6 +46,7 @@ class ApiController extends Controller
         }
         
         $job = Job::create([
+            'category'=> $request->category,
             'company_name' => $request->company_name,
             'location' => $request->location,
             'position' => $request->position,
@@ -69,6 +71,7 @@ class ApiController extends Controller
     public function update(Request $request, Job $job)
     {
         $validator = Validator::make($request->all(),[
+            'category'=> 'required',
             'company_name' => 'required',
             'location' => 'required',
             'position' => 'required',
@@ -86,6 +89,7 @@ class ApiController extends Controller
         } 
 
         $job ->update([
+            'category'=> $request->category,
             'company_name' => $request->company_name,
             'location' => $request->location,
             'position' => $request->position,

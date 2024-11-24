@@ -444,14 +444,7 @@ canvas {
 }
 
 
-#partner{
-  width: 100%;
-  height: 70vh;
-  background: #fff;
-  border-bottom: 2px solid #f2f2f5;
-  margin: 72px 0 -72px 0;
-  display: flex;
-}
+
 
 /* Section */
   section {
