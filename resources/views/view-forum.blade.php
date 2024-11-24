@@ -8,10 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <style>
-        /* Reddit-like styling for posts */
-
-    </style>
 </head>
 
 <body>
@@ -21,7 +17,7 @@
 
           <div class="logo">
             <a href="index.html">
-              <img src="asset{{('img/inti.png')}}" class="img-fluid" alt="Logo">
+              <img src="asset('img/inti.png')" class="img-fluid" >
             </a>
           </div>
 
@@ -86,6 +82,7 @@
         </div>
     @endforeach
     </main>
+</body>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
@@ -94,5 +91,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
             integrity="sha384-cVKIPhGmHRQsA0iZdF2oJKGL5tW9YzJzXnEAGkPrxKQ68V4Ax0VqGZ77+Kp9v9GQ"
             crossorigin="anonymous"></script>
-</body>
 </html>

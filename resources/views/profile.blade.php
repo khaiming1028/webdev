@@ -12,94 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f7f7f7;
-        }
 
-        .profile-header {
-            background-color: #007bff;
-            color: #fff;
-            padding: 50px 20px;
-            text-align: center;
-            border-bottom: 5px solid #0056b3;
-        }
-
-        .profile-header h1 {
-            font-size: 2.5rem;
-        }
-
-        .profile-header p {
-            font-size: 1.1rem;
-        }
-
-        .profile-container {
-            max-width: 900px;
-            margin: 40px auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #f4f4f4;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-section h2 {
-            font-size: 1.75rem;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .profile-section p {
-            font-size: 1rem;
-            color: #555;
-            margin: 5px 0;
-        }
-
-        .profile-section .resume a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .profile-section .resume a:hover {
-            text-decoration: underline;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-            padding: 12px 20px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 5px;
-            text-align: center;
-            display: block;
-            width: 100%;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-
-        .profile-info {
-            margin-bottom: 20px;
-        }
-
-        .profile-info .info-text h3 {
-            font-size: 1.75rem;
-        }
-
-        .profile-info .info-text p {
-            font-size: 1.1rem;
-            color: #777;
-        }
 
     </style>
 </head>
@@ -150,17 +63,10 @@
         <!-- Contact Info Section -->
         <div class="profile-section">
             <h2>Contact Information</h2>
-            <p>Email: {{ $student->email }}</p>
+            <p>Email: {{ $student->user->email }}</p>
             <p>Phone: {{ $student->student_contact }}</p>
         </div>
 
-        <!-- Status Section -->
-        @if($student->status)
-        <div class="profile-section">
-            <h2>Status</h2>
-            <p>{{ $student->status }}</p>
-        </div>
-        @endif
 
         <!-- Resume Section -->
         <div class="profile-section resume">

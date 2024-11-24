@@ -1010,3 +1010,60 @@ p {
 .admin .btn-primary {
     background-color: #007bff;
 }
+
+
+.edit body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.edit .main-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.student-edit .container {
+    margin-top: 30px;
+}
+
+.edit .my-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit  .form-group {
+    margin-bottom: 15px;
+}
+
+.edit label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.edit .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.edit .form-control-file {
+    padding: 8px;
+}
+
+.edit .btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.edit .btn-primary:hover {
+    background-color: #0056b3;
+}

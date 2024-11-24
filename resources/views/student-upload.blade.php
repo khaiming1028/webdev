@@ -45,7 +45,7 @@
     <div class="container d-flex align-items-center justify-content-between">
       <div class="logo">
         <a href="index.html">
-          <img src="img/inti.png" class="img-fluid" alt="Logo">
+          <img src="{{asset('img/inti.png')}}" class="img-fluid" alt="Logo">
         </a>
       </div>
 
