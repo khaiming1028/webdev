@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v01.02.06...master)
+## [Unreleased](https://github.com/laravel/laravel/compare/v01.02.07...master)
+
+## [v01.02.07](https://github.com/laravel/laravel/compare/v01.02.06...v01.02.07) - 2024-11-24
+
+UI using css and boostrap are highly improvised with some responsive and interactive features.
 
 ## [v01.02.06](https://github.com/laravel/laravel/compare/v01.02.05...v01.02.06) - 2024-11-19
 
